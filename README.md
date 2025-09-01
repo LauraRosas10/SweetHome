@@ -1,3 +1,3 @@
 <h1 align="center">🏡✨ Sweet Home ✨🏡</h1>
 
-Tienda Online: Artículos para el Hogar.
+<p align="center">Tienda Online: Artículos para el Hogar.</p>
