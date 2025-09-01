@@ -1,2 +1,2 @@
 # 🏡✨ Sweet Home ✨🏡
-Tienda Online: Artículos para el Hogar.
+# Tienda Online: Artículos para el Hogar.
