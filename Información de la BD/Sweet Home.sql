@@ -1,13 +1,12 @@
 
 
--- Crear la nueva base de datos
+-- Crear la base de datos
 CREATE DATABASE sweet_home_db;
 
--- Usar la base de datos recién creada
+-- Usar la base de datos 
 USE sweet_home_db;
 
--- Creacion tabla ROLES
-
+-- Creacion tabla Roles
 CREATE TABLE Rol (
 	Id_rol INT PRIMARY KEY AUTO_INCREMENT,
 	Nombre VARCHAR(100)
