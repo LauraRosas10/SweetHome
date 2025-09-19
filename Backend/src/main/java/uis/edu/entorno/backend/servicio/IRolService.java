@@ -15,6 +15,9 @@ public interface IRolService {
 	
 	Rol buscarRol (int id);
 	
+	//nuevo rol
+	Rol nuevoRol(Rol rol);
+	
 	
 	
 	

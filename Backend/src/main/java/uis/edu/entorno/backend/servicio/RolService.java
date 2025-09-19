@@ -38,4 +38,11 @@ public class RolService implements IRolService {
 		return rol;
 	}
 
+
+	@Override
+	public Rol nuevoRol(Rol rol) {
+		//nuevo rol
+		return rolRepositorio.save(rol);
+	}
+
 }
