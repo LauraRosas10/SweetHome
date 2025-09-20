@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Resgistro_Css.css">
+    <title>Formulario Registro</title>
+</head>
+<body>
+    <div class="Registro">
+        
+        <section class="form-register">
+            <h4>Formulario Registro</h4>
+            <form>
+                <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+                <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
+                <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+                <input class="controls" type="password" name="contrasena" id="contrasena" placeholder="Ingrese su Contraseña">
+                <input class="controls" type="text" name="telefono" id="telefono" placeholder="Ingrese su Telefono">
+                <select class="controls" name="rol" id="rol" required>
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="usuario">Consumidor</option>
+                    <option value="administrador">Vendedor</option>
+                </select>
+                <input class="botons" type="submit" value="Registrar">
+                <p><a href="#">¿Ya tengo Cuenta?</a></p>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

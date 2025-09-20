@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+body {
+    background: #E9F1FA url('/frontLogin/SL-122221-47450-01.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    color: #141414;
+}
+
+.form-register {
+    width: 400px;
+    background: rgba(255,255,255,0.85);
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00ABE4;
+    border: 2px solid #00ABE4;
+}
+
+.form-register h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+    color: #00ABE4;
+}
+
+.controls {
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    border: 1px solid #00ABE4;
+    color: #141414;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.controls:focus {
+    outline: none;
+    border-color: #00ABE4;
+    background: #FFFFFF;
+}
+
+.form-register p {
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #141414;
+}
+
+.form-register a:hover {
+    color: #141414;
+}
+
+.botons {
+    width: 100%;
+    background: #00ABE4;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.botons:hover {
+    background: #141414;
+    color: #E9F1FA;
+}
+
+.form-register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.controls, .botons {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+select.controls{
+    width: 90%;
+    background: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    border: 1px solid #00ABE4;
+    color: #141414;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
