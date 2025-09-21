@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,4 +45,28 @@ public class CategoriaControlador {
 		
 		return new ResponseEntity<> (cat, HttpStatus.OK);
 	}
+	
+	//editar categoria
+	@PutMapping("/actualizarcateg")
+	//Es el tipo de dato que el método devolverá //con el formato JSON  de entrada se crea el objeto
+	public ResponseEntity<Categoria> editar(@RequestBody Categoria categoria){
+		Categoria obj =categoriaService.buscarCategoria(categoria.getId_categoria());
+		
+		if (obj!=null) {
+			//get obtiene los valores del JSOn ingresado
+			//set reestablece, cambia el valor actual
+		
+			obj.setNombre(categoria.getNombre());
+			obj.setEstado(categoria.getEstado());
+			obj.setDescripcion(categoria.getDescripcion());
+
+
+			
+			categoriaService.nuevaCategoria(obj);
+		}else {
+			return new ResponseEntity<>(obj, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<> (obj, HttpStatus.OK);
+		
+	}	
 }

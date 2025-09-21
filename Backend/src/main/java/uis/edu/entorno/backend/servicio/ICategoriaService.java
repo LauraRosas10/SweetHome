@@ -17,5 +17,6 @@ public interface ICategoriaService {
 	
 	Categoria buscarCategoria (int id);
 	
+
 	
 }

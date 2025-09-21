@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,5 +47,26 @@ public class RolControlador {
 		
 		return new ResponseEntity<> (rol1, HttpStatus.OK);
 	}
+	
+	//editar rol
+	@PutMapping("/actualizarrol")
+	//Es el tipo de dato que el método devolverá //con el formato JSON  de entrada se crea el objeto
+	public ResponseEntity<Rol> editar(@RequestBody Rol rol){
+		Rol obj =rolService.buscarRol(rol.getId_rol());
+		
+		if (obj!=null) {
+			//get obtiene los valores del JSOn ingresado
+			//set reestablece, cambia el valor actual
+		
+			obj.setNombre(rol.getNombre());
+			obj.setEstado(rol.getEstado());
+			
+			rolService.nuevoRol(obj);
+		}else {
+			return new ResponseEntity<>(obj, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<> (obj, HttpStatus.OK);
+		
+	}	
 	
 }
