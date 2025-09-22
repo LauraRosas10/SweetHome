@@ -22,20 +22,20 @@ public class Pedido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int Id_pedido;
+	private int Id_pedido;
 	
 	//foraneas
 	
 	@ManyToOne
 	@JoinColumn(name="Id_usuario")
-	public Usuario Id_usuario;
+	private Usuario Id_usuario;
 	
 	
-	public LocalDate Fecha;  //yyyy-MM-dd
-	public float Total;
-	public String Estado;
-	public String Direccion;
-	public String Tipo_pago;
+	private LocalDate Fecha;  //yyyy-MM-dd
+	private float Total;
+	private String Estado;
+	private String Direccion;
+	private String Tipo_pago;
 	
 	
 	
