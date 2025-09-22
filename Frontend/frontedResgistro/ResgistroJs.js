@@ -1,3 +1,19 @@
+/*Captura de datos para enviar al backend*/
+document.getElementById("resgistro_usuario").addEventListener("submit", function(event) {
+  event.preventDefault(); 
+
+  const formDate = {
+    nombre: document.getElementById("Nombre").value,
+    apellido: document.getElementById("Apellido").value,
+    email: document.getElementById("Email").value,
+    password: document.getElementById("Password").value,
+    telefono: document.getElementById("Telefono").value,
+    rol: document.getElementById("TipoUsuario").value
+  }
+
+  console.log("exito",formDate)
+}); 
+
 document.addEventListener("DOMContentLoaded", () => {
   const inputs = document.querySelectorAll("form input, form select");
   const boton = document.querySelector("button");

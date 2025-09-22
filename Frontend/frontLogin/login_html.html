@@ -9,49 +9,48 @@
 <body>
     <div class="login">
         <img src="/frontLogin/SL-122221-47450-01.jpg" alt="login image" class="login__img">
+        <form id="userfrom" action="" class="login__form">
+            <h1 class="login__title">login</h1>
 
-        <form action="" class="login__form">
-        <h1 class="login__title">login</h1>
+            <div class="login__content">
+                <div class="login__box">
+                <i class="bx bx-lock-alt"></i>
+                
+                <div class="login__box-input">
+                    <input type="email" id="Email" name="email" class="login__input" placeholder="Correo electrónico" title="Correo electrónico" autocomplete="email" required>
+                    <label for="Email" class="login__label">Email</label>
+                </div>
+                </div>
 
-        <div class="login__content">
-            <div class="login__box">
-            <i class="bx bx-lock-alt"></i>
-            
-            <div class="login__box-input">
-                <input type="email" required class="login__input" placeholder="">
-                <label for="" class="login__label">Username</label>
-            </div>
-            </div>
-
-            <div class="login__box">
-            <i class="ri-lock-2-line login__icon"></i>
+                <div class="login__box">
+                <i class="ri-lock-2-line login__icon"></i>
 
 
-            <div class="login__box-input">
-                <input type="password" required class="login__input" id="login-pas" placeholder="">
-                <label for="" class="login__label">Password</label>
-                <i class="ri-eye-off-line login__eye"></i>
-            </div>
-            </div>
-        </div>
-
-        <div class="login__check">
-            <div class="login__check-group">
-            <input type="checkbox" class="login__check-input">
-            <label for="" class="login__check-label">Remember me</label>
+                <div class="login__box-input">
+                    <input type="password" id="login-pass" name="password" required class="login__input" placeholder="Contraseña" title="Contraseña" autocomplete="current-password">
+                    <label for="login-pass" class="login__label">Password</label>
+                    <i class="ri-eye-off-line login__eye" id="login-eye"></i>
+                </div>
+                </div>
             </div>
 
-            <a href="#" class="login__forgot">Forgot Password?</a>
-        </div>
+            <div class="login__check">
+                <div class="login__check-group">
+                <input type="checkbox" class="login__check-input">
+                <label for="" class="login__check-label">Remember me</label>
+                </div>
 
-        <button type="submit" class="login__button">Login</button>
+                <a href="#" class="login__forgot">Forgot Password?</a>
+            </div>
 
-        <p class="login__register">
-            Don't have an account? <a href="#">Register</a>
-        </p>
-        </form>
+            <button type="submit" class="login__button">Login</button>
+
+            <p class="login__register">
+                Don't have an account? <a href="#">Register</a>
+            </p>
+            </form>
     </div>
 
-    <script>src = "loginJS.js"</script>
+    <script src="loginJS.js"></script>
 </body>
 </html>
