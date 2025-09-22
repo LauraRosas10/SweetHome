@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
 body {
-    background: #E9F1FA url('/frontLogin/SL-122221-47450-01.jpg') no-repeat center center fixed;
+    background: #E9F1FA url('../frontLogin/SL-122221-47450-01.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Poppins', sans-serif;
-    color: #141414;
+    color: #00ABE4;
 }
 
 .form-register {
     width: 400px;
-    background: rgba(255,255,255,0.85);
+    background: transparent;
     padding: 30px;
     margin: 50px auto;
     border-radius: 10px;
@@ -40,7 +40,7 @@ body {
 .controls:focus {
     outline: none;
     border-color: #00ABE4;
-    background: #FFFFFF;
+    background: transparent;
 }
 
 .form-register p {
@@ -92,7 +92,7 @@ select.controls{
     border-radius: 5px;
     margin-bottom: 16px;
     border: 1px solid #00ABE4;
-    color: #141414;
+    color: white;
     font-size: 16px;
     transition: border-color 0.3s;
     appearance: none;
