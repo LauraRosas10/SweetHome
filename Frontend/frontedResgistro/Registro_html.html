@@ -15,13 +15,18 @@
                 <input class="controls" id="Nombre" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
                 <input class="controls" id="Apellido" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
                 <input class="controls" id="Email" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
-                <input class="controls" id="Password" type="password" name="contrasena" id="contrasena" placeholder="Ingrese su Contraseña">
                 <input class="controls" id="Telefono" type="text" name="telefono" id="telefono" placeholder="Ingrese su Telefono">
                 <select class="controls" id="TipoUsuario" name="rol" id="rol" required>
                     <option value="" disabled selected>Seleccione</option>
                     <option value="1">Vendedor</option>
                     <option value="2">Cliente</option>
                 </select>
+                <div class="password-container">
+                    <input class="controls" id="Password" type="password" name="contrasena" placeholder="Ingrese su Contraseña">
+                    <button type="button" class="password-toggle" onclick="togglePassword()">
+                        <span id="eyeIcon">👁️</span>
+                    </button>
+                </div>
                 <button class="botons" type="submit">Registar</button>
                 <p><a href="../frontLogin/login_html.html">¿Ya tengo Cuenta?</a></p>
                 <div id="success" class="success"></div>

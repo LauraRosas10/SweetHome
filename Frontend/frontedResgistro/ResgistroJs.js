@@ -62,11 +62,12 @@ document.getElementById("resgistro_usuario").addEventListener("submit", function
 
 document.addEventListener("DOMContentLoaded", () => {
   const inputs = document.querySelectorAll("form input, form select");
-  const boton = document.querySelector("button");
+  const boton = document.querySelector(".botons");
   if (!boton) return;
 
   // Efecto al enfocar campos
   inputs.forEach(input => {
+    if (input.classList.contains('password-toggle')) return;
     input.addEventListener("focus", () => {
       input.style.backgroundColor = "#3a3a3a";
       input.style.color = "#fff";
@@ -102,3 +103,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 200);
   }
 });
+function togglePassword() {
+    const passwordInput = document.getElementById('Password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.textContent = '🙈';
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.textContent = '👁️';
+    }
+}
