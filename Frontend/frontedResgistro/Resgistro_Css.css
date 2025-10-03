@@ -1,0 +1,176 @@
+/* Forzar color blanco solo al icono del ojo dentro del botón de mostrar/ocultar contraseña */
+.password-toggle .login__eye {
+    color: #fff !important;
+}
+
+.password-toggle i {
+  color: #fff !important;
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+body {
+    background: #E9F1FA url('https://i.pinimg.com/1200x/86/56/f2/8656f259110f53ac1447e32f3c57fc01.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    color: #00ABE4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.form-register {
+    width: 400px;
+    background: transparent;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00ABE4;
+    border: 2px solid #00ABE4;
+}
+
+.form-register h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+    color: #00ABE4;
+}
+
+.controls {
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 4px;
+    border: 1px solid #00ABE4;
+    color: #ffffff;        /*  Texto blanco */
+    font-size: 18px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+    caret-color: #ffffff;  /* Cursor blanco */
+}
+.controls::placeholder {
+    color: #817878;   /* gris claro para la letra que aparece por defecto */
+}
+.controls:focus {
+    outline: none;
+    border-color: #00ABE4;
+    background: transparent;
+}
+
+
+select.controls option {
+    background: #141414;       /*fondo oscuro al abrir el desplegable */
+    color: #ffffff;            /* texto blanco dentro del desplegable */
+}
+.botons {
+    width: 100%;
+    background: #00ABE4;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.botons:hover {
+    background: #141414;
+    color: #E9F1FA;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.password-container .controls {
+    margin-bottom: 0;
+    padding-right: 45px;
+    box-sizing: border-box;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #fff !important;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Errores */
+.input-error {
+    border: 2px solid red;
+}
+
+.login__icon, .login__eye {
+font-size: 1.25rem;
+color: #fff !important;
+}
+.error-message {
+    min-height: 18px;
+    display: block;
+    color: red;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #00ABE4;
+    font-weight: 500;
+    align-items: center;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+
+/* Notificación flotante */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #4CAF50; /* Verde éxito */
+    color: white;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    font-size: 15px;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animaciones */
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-20px); }
+}

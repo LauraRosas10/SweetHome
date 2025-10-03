@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="Resgistro_Css.css">
+</head>
+<body>
+    <div class="Registro">
+        <section class="form-register">
+            <h4>Registro</h4>
+            <form id="resgistro_usuario">
+                
+                <input class="controls" id="Nombre" type="text" placeholder="Ingrese su Nombre">
+                <div id="error-Nombre" class="error-message"></div>
+
+                <input class="controls" id="Apellido" type="text" placeholder="Ingrese su Apellido">
+                <div id="error-Apellido" class="error-message"></div>
+
+                <input class="controls" id="Email" type="email" placeholder="Ingrese su Correo">
+                <div id="error-Email" class="error-message"></div>
+
+                <input class="controls" id="Telefono" type="text" placeholder="Ingrese su Teléfono">
+                <div id="error-Telefono" class="error-message"></div>
+                <select class="controls"  id="Rol" required>
+                    <option value="" disabled selected>Seleccione un Rol</option>
+                </select>
+                <div id="error-rol" class="error-message"></div>
+
+                <div class="password-container">
+                    <input class="controls" id="Password" type="password" placeholder="Ingrese su Contraseña">
+                    <button type="button" class="password-toggle" onclick="togglePassword()">
+                        <span id="eyeIcon">👁️</span>
+                    </button>
+                </div>
+                <div id="error-Password" class="error-message"></div>
+
+                <button class="botons" type="submit">Registrar</button>
+                <p><a href="../frontLogin/login_html.html">¿Ya tengo Cuenta?</a></p>
+                <div id="success" class="success"></div>
+            </form>
+        </section>
+    </div>
+        <!-- Contenedor para notificaciones -->
+    <div id="toast-container"></div>
+    <script src="ResgistroJs.js"></script>
+    <script src="Endpoints.js"></script>
+</body>
+</html>

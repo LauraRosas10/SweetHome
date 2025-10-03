@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet home Login</title>
+<link rel="stylesheet" href="login_css.css">
+</head>
+<!-- Remix Icon CDN -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login">
+        <img src="https://i.pinimg.com/1200x/86/56/f2/8656f259110f53ac1447e32f3c57fc01.jpg" alt="login image" class="login__img">
+        <form id="userfrom" action="" class="login__form">
+            <h1 class="login__title">Login</h1>
+
+            <div class="login__content">
+                <div class="login__box">
+                    <i class="bx bx-lock-alt"></i>
+                    <div class="login__box-input">
+                        <label for="Email" >Email</label>
+                        <input type="email" id="Email" name="email" class="login__input" placeholder="Correo electrónico" title="Correo electrónico" autocomplete="email" required>
+                        
+                        <div id="error-Email" class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="login__box">
+                    <div class="login__box-input" style="position: relative;">
+                        <label for="login-pass" >Password</label>
+                        <input type="password" id="login-pass" name="password" required class="login__input" placeholder="Contraseña" title="Contraseña" autocomplete="current-password">
+                        <i class="ri-eye-off-line login__eye" id="login-eye"></i>
+                        <div id="error-login-pass" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login__check">
+                <div class="login__check-group">
+                    <input type="checkbox" class="login__check-input">
+                    <label for="" class="login__check-label">Remember me</label>
+                </div>
+                <a href="#" class="login__forgot">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login__button">Login</button>
+
+            <p class="login__register">
+                Don't have an account? <a href="../frontedResgistro/Registro_html.html">Register</a>
+            </p>
+        </form>
+    </div>
+
+    <script src="loginJS.js"></script>
+    <script src="Endpoints.js"></script>
+</body>
+</html>

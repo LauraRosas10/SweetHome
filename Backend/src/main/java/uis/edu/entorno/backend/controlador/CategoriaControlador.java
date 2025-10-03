@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -18,27 +19,28 @@ import uis.edu.entorno.backend.servicio.CategoriaService;
 
 
 @RestController
+@RequestMapping("/categoria")  //Todos los metodos inician por esta ruta
 public class CategoriaControlador {
 
 	@Autowired
 	CategoriaService categoriaService;
 	
 	//Listar categorias
-	@GetMapping("/categorias")
+	@GetMapping("/")
 	public List<Categoria> cargarcategorias(){
 		return categoriaService.getCategorias();
 	}
 	
 	//Buscar por ID
 	
-	@GetMapping("categorias/{id}")
+	@GetMapping("/{id}")
 	public Categoria buscarporId(@PathVariable int id) {
 		
 		return categoriaService.buscarCategoria(id);
 	}
 	
 	//nueva categoria
-	@PostMapping("/nuevacategoria")
+	@PostMapping("/nueva")
 	public ResponseEntity<Categoria> nuevaCateg(@RequestBody Categoria categoria) {
 		
 		Categoria cat=categoriaService.nuevaCategoria(categoria);
@@ -47,7 +49,7 @@ public class CategoriaControlador {
 	}
 	
 	//editar categoria
-	@PutMapping("/actualizarcateg")
+	@PutMapping("/editar")
 	//Es el tipo de dato que el método devolverá //con el formato JSON  de entrada se crea el objeto
 	public ResponseEntity<Categoria> editar(@RequestBody Categoria categoria){
 		Categoria obj =categoriaService.buscarCategoria(categoria.getId_categoria());
