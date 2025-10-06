@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -17,21 +16,20 @@ import uis.edu.entorno.backend.modelo.Pedido;
 import uis.edu.entorno.backend.servicio.PedidoService;
 
 @RestController
-@RequestMapping("/pedido")  //Todos los metodos inician por esta ruta
 public class PedidoControlador {
 
 	@Autowired
 	PedidoService pedidoService;
 	
 	//listar pedidos
-	@GetMapping("/")
+	@GetMapping("/pedidos")
 	public List<Pedido> listarpedidos(){
 		return pedidoService.getPedidos();
 	}
 	
 	//Buscar por Id
 	
-	@GetMapping("/{id}")
+	@GetMapping("/pedidos/{id}")
 	public Pedido buscarId(@PathVariable int id){
 		
 		return pedidoService.buscarpedido(id);
@@ -40,7 +38,7 @@ public class PedidoControlador {
 	
 	//Actualiza pedido
 	
-	@PutMapping("/editar")
+	@PutMapping("/editarpedido")
 	public ResponseEntity<Pedido> editarpedido(@RequestBody Pedido pedido){
 		
 		Pedido ped=null;
@@ -64,7 +62,7 @@ public class PedidoControlador {
 	
 	//nuevo pedido
 	
-	@PostMapping("/nuevo")
+	@PostMapping("/nuevopedido")
 	public ResponseEntity<Pedido> nuevopedido(@RequestBody Pedido pedido){
 		
 		Pedido pedid=pedidoService.nuevopedido(pedido);

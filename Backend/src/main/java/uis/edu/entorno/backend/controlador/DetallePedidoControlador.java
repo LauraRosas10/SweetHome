@@ -29,7 +29,7 @@ public class DetallePedidoControlador{
 	
 	
 	//todos los detalles
-	@GetMapping("/")
+	@GetMapping("/listar")
 	public List<DetallePedido> listarDetallePedidos() {
 		// TODO Auto-generated method stub
 		return detallePedidoService.getDetallePedidos();
@@ -50,7 +50,7 @@ public class DetallePedidoControlador{
 	}
 	
 	//Editar detalles pedidos
-	@PutMapping("/editar")
+	@PutMapping("/actualizar")
 	public ResponseEntity<DetallePedido> editar(@RequestBody DetallePedido detallePedido){
 		DetallePedido obj = detallePedidoService.buscarDetallePedido(detallePedido.getId_detalle_pedido());
 		
