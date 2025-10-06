@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import uis.edu.entorno.backend.modelo.Producto;
-import uis.edu.entorno.backend.modelo.Usuario;
+
 import uis.edu.entorno.backend.repositorio.IUsuarioRepositorio;
 import uis.edu.entorno.backend.servicio.CloudinaryService;
 import uis.edu.entorno.backend.servicio.ProductoService;

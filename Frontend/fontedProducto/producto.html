@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Producto</title>
+    <link rel="stylesheet" href="/Frontend/fontedProducto/producto.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="form-register">
+    <h4>Nuevo Producto</h4>
+    <form id="formProducto">
+        <input class="controls" type="text" id="nombre" placeholder="Nombre del producto" required>
+        <input class="controls" type="number" id="precio" placeholder="Precio" required>
+        <input class="controls" type="number" id="stock" placeholder="Stock disponible" required>
+        <select class="controls" id="categoria" required></select>
+        <textarea class="controls" id="descripcion" placeholder="Descripción del producto" rows="4"></textarea>
+        <input class="controls" type="file" id="imagenes" multiple accept="image/*">
+        <button type="submit" class="botons">Crear y subir imágenes</button>
+    </form>
+    </section>
+    <script src="/Frontend/fontedProducto/producto.js"></script>
+</body>
+</html>
