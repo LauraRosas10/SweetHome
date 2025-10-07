@@ -1,5 +1,4 @@
-//autentificacion
-
+// Autentificación CORREGIDA
 document.getElementById("userfrom").addEventListener("submit", async function (e) {
     e.preventDefault();
     limpiarErrores();
@@ -27,43 +26,55 @@ document.getElementById("userfrom").addEventListener("submit", async function (e
     try {
         const bodyLogin = { email: email, contraseña: password };
         console.log("Body enviado al backend:", bodyLogin);
-        const response = await fetch("http://localhost:8080/usuario/loginclient", {
+        
+        // CAMBIO 1: Usar el endpoint /login que devuelve el usuario completo
+        const response = await fetch("http://localhost:8080/usuario/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email:email,  contraseña: password })
-            
-            
-
+            body: JSON.stringify(bodyLogin)
         });
 
         if (response.ok) {
             const data = await response.json();
             console.log("Respuesta del backend:", data);
-            if (data === 1) {
-                localStorage.setItem("token", "cliente-validado"); 
+            
+            // CAMBIO 2: Verificar que recibimos los datos del usuario
+            if (data && data.id_usuario) {
+                // CAMBIO 3: Guardar token real (por ahora simulado) y userId
+                localStorage.setItem("token", "Bearer-" + data.id_usuario); 
+                localStorage.setItem("userId", data.id_usuario);
+                localStorage.setItem("userEmail", data.email);
+                localStorage.setItem("userName", data.nombre);
+                
                 mostrarNotificacion("Login exitoso", true);
                 limpiarCamposLogin();
 
-                const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/";
+                // Redirigir a la página que estaba intentando acceder
+                const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/Frontend/index.html";
                 localStorage.removeItem("redirectAfterLogin");
-                window.location.href = redirectUrl;
-
-                // Aquí puedes redirigir o guardar datos en localStorage
+                
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 1000);
             } else {
-                console.log("Login no exitoso:", data);
-                mostrarNotificacion("Correo o contraseña incorrectos.");
+                mostrarNotificacion("Credenciales incorrectas.");
             }
         } else {
+            const errorText = await response.text();
+            console.error("Error del servidor:", errorText);
             mostrarNotificacion("Correo o contraseña incorrectos.");
         }
     } catch (error) {
+        console.error("Error en login:", error);
         mostrarNotificacion("Error al conectar con el servidor.");
     }
+});
+
 // Notificación flotante
 function mostrarNotificacion(mensaje, exito = false) {
     let noti = document.createElement("div");
     noti.innerText = mensaje;
-    noti.style.position = "absolute";
+    noti.style.position = "fixed"; // Cambiar a fixed
     noti.style.left = "50%";
     noti.style.top = "30px";
     noti.style.transform = "translateX(-50%)";
@@ -76,14 +87,13 @@ function mostrarNotificacion(mensaje, exito = false) {
     noti.style.zIndex = 9999;
     noti.style.opacity = 1;
     noti.style.transition = "opacity 0.5s";
-    // Insertar sobre el formulario
-    const form = document.getElementById("userfrom");
-    form.style.position = "relative";
-    form.appendChild(noti);
+    
+    document.body.appendChild(noti); // Agregar al body
+    
     setTimeout(() => {
         noti.style.opacity = 0;
         setTimeout(() => noti.remove(), 500);
-    }, 1500);
+    }, 2000);
 }
 
 // Limpiar campos del formulario de login
@@ -93,4 +103,22 @@ function limpiarCamposLogin() {
         if (input) input.value = "";
     });
 }
-});
+
+// Función auxiliar para limpiar errores (debes tenerla definida)
+function limpiarErrores() {
+    document.querySelectorAll(".error-message").forEach(el => el.remove());
+}
+
+// Función auxiliar para mostrar errores en campos
+function mostrarErrorCampo(campoId, mensaje) {
+    const campo = document.getElementById(campoId);
+    if (campo) {
+        const error = document.createElement("div");
+        error.className = "error-message";
+        error.style.color = "#e74c3c";
+        error.style.fontSize = "0.9rem";
+        error.style.marginTop = "5px";
+        error.textContent = mensaje;
+        campo.parentElement.appendChild(error);
+    }
+}

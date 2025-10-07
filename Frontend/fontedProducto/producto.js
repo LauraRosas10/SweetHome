@@ -5,107 +5,25 @@ const API        = "http://localhost:8080";
 const LOGIN_PATH = "/Frontend/frontLogin/login_html.html";
 
 // ============================
-// Función para cargar categorías
+// Verificar sesión al cargar la página
 // ============================
-async function cargarCategorias() {
-  try {
-    const token = localStorage.getItem("token");
-    const res   = await fetch(`${API}/categorias/`, {
-      headers: { "Authorization": "Bearer " + token }
-    });
-
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status} al cargar categorías`);
-    }
-
-    const categorias = await res.json();
-    const select     = document.getElementById("categoria");
-    select.innerHTML = '<option value="">Selecciona una categoría</option>';
-
-    categorias.forEach((cat) => {
-      const option       = document.createElement("option");
-      option.value       = cat.id_categoria;
-      option.textContent = cat.nombre || cat.Nombre;
-      select.appendChild(option);
-    });
-  } catch (error) {
-    console.error("Error cargando categorías:", error);
-    alert("No se pudieron cargar las categorías");
+window.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+  
+  // CAMBIO 1: Validación simple sin llamadas al backend
+  if (!token || !userId) {
+    console.log("No hay sesión activa, redirigiendo a login...");
+    localStorage.setItem("redirectAfterLogin", window.location.pathname);
+    window.location.href = LOGIN_PATH;
+    return;
   }
-}
-
-// ============================
-// Función para crear producto y subir imágenes
-// ============================
-async function enviarProducto() {
-  try {
-    const token  = localStorage.getItem("token");
-    const userId = parseInt(localStorage.getItem("userId"), 10);
-
-    if (!token || !userId) {
-      localStorage.setItem("redirectAfterLogin", window.location.pathname);
-      window.location.href = LOGIN_PATH;
-      return;
-    }
-
-    const categoriaId = parseInt(document.getElementById("categoria").value, 10);
-    if (!categoriaId) throw new Error("Debes seleccionar una categoría");
-
-    const payload = {
-      nombre:       document.getElementById("nombre").value,
-      stock:        parseInt(document.getElementById("stock").value, 10),
-      precio:       parseFloat(document.getElementById("precio").value),
-      descripcion:  document.getElementById("descripcion").value,
-      id_categoria: { id_categoria: categoriaId },
-      id_usuario:   { id_usuario: userId }
-    };
-
-    console.log("Payload a enviar:", JSON.stringify(payload, null, 2));
-
-    const createRes = await fetch(`${API}/producto/nuevo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!createRes.ok) {
-      const errText = await createRes.text();
-      throw new Error("Error al crear producto: " + errText);
-    }
-
-    const creado = await createRes.json();
-    console.log("Producto creado:", creado);
-
-    const prodId = creado.id_producto;
-    const files  = document.getElementById("imagenes").files;
-
-    if (files.length > 0) {
-      const formData = new FormData();
-      for (let f of files) formData.append("files", f);
-
-      const upRes = await fetch(`${API}/producto/${prodId}/imagenes`, {
-        method: "POST",
-        headers: { Authorization: "Bearer " + token },
-        body: formData
-      });
-
-      if (!upRes.ok) {
-        const errUp = await upRes.text();
-        throw new Error("Error al subir imágenes: " + errUp);
-      }
-
-      console.log("Imágenes subidas con éxito");
-    }
-
-    alert("Producto y sus imágenes creados correctamente");
-  } catch (error) {
-    console.error("Error en enviarProducto:", error);
-    alert(error.message || "Ocurrió un error al crear el producto");
-  }
-}
+  
+  console.log("Usuario logueado con ID:", userId);
+  
+  // Usuario verificado, inicializar la página
+  initProductoPage();
+});
 
 // ============================
 // Inicializar la página de producto
@@ -121,38 +39,149 @@ function initProductoPage() {
     console.error("No se encontró el formulario con id='formProducto'");
   }
 
-  cargarCategorias(); // Ahora se llama en el momento correcto
+  cargarCategorias();
 }
 
 // ============================
-// Verificar sesión al cargar la página
+// Función para cargar categorías
 // ============================
-window.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
-  let userId = localStorage.getItem("userId");
-  if (!token) {
-    localStorage.setItem("redirectAfterLogin", window.location.pathname);
-    window.location.href = LOGIN_PATH;
-    return;
-  }
+async function cargarCategorias() {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await fetch(`${API}/categorias/`, {
+      headers: { "Authorization": token }
+    });
 
-  if (!userId) {
-    try {
-      const meRes = await fetch(`${API}/usuario/me`, {
-        headers: { "Authorization": "Bearer " + token }
-      });
-      if (!meRes.ok) throw new Error("No se pudo obtener usuario");
-      const me = await meRes.json();
-      userId = me.id_usuario;
-      localStorage.setItem("userId", userId);
-    } catch (err) {
-      console.error("Error fetching userId:", err);
-      localStorage.setItem("redirectAfterLogin", window.location.pathname);
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} al cargar categorías`);
+    }
+
+    const categorias = await res.json();
+    const select = document.getElementById("categoria");
+    select.innerHTML = '<option value="">Selecciona una categoría</option>';
+
+    categorias.forEach((cat) => {
+      const option = document.createElement("option");
+      option.value = cat.id_categoria;
+      option.textContent = cat.nombre || cat.Nombre;
+      select.appendChild(option);
+    });
+    
+    console.log("Categorías cargadas:", categorias.length);
+  } catch (error) {
+    console.error("Error cargando categorías:", error);
+    alert("No se pudieron cargar las categorías: " + error.message);
+  }
+}
+
+// ============================
+// Función para crear producto y subir imágenes
+// ============================
+async function enviarProducto() {
+  try {
+    const token = localStorage.getItem("token");
+    const userId = parseInt(localStorage.getItem("userId"), 10);
+
+    // CAMBIO 2: Validación mejorada
+    if (!token || !userId || isNaN(userId)) {
+      alert("Sesión expirada. Por favor inicia sesión nuevamente.");
+      localStorage.clear();
       window.location.href = LOGIN_PATH;
       return;
     }
-  }
 
-  // Solo ahora inicializamos la página
-  initProductoPage();
-});
+    const categoriaId = parseInt(document.getElementById("categoria").value, 10);
+    if (!categoriaId || isNaN(categoriaId)) {
+      alert("Debes seleccionar una categoría válida");
+      return;
+    }
+
+    // CAMBIO 3: Construir el payload correctamente
+    const payload = {
+      nombre: document.getElementById("nombre").value.trim(),
+      stock: parseInt(document.getElementById("stock").value, 10),
+      precio: parseFloat(document.getElementById("precio").value),
+      descripcion: document.getElementById("descripcion").value.trim(),
+      id_categoria: { 
+        id_categoria: categoriaId 
+      },
+      id_usuario: { 
+        id_usuario: userId 
+      }
+    };
+
+    // Validar campos obligatorios
+    if (!payload.nombre || !payload.descripcion) {
+      alert("Nombre y descripción son obligatorios");
+      return;
+    }
+    
+    if (isNaN(payload.stock) || payload.stock < 0) {
+      alert("El stock debe ser un número válido");
+      return;
+    }
+    
+    if (isNaN(payload.precio) || payload.precio <= 0) {
+      alert("El precio debe ser un número válido mayor a 0");
+      return;
+    }
+
+    console.log("Payload a enviar:", JSON.stringify(payload, null, 2));
+
+    // CAMBIO 4: Crear el producto
+    const createRes = await fetch(`${API}/producto/nuevo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!createRes.ok) {
+      const errText = await createRes.text();
+      console.error("Error del servidor:", errText);
+      throw new Error("Error al crear producto: " + errText);
+    }
+
+    const creado = await createRes.json();
+    console.log("Producto creado exitosamente:", creado);
+
+    // CAMBIO 5: Subir imágenes si existen
+    const prodId = creado.id_producto;
+    const files = document.getElementById("imagenes").files;
+
+    if (files.length > 0) {
+      const formData = new FormData();
+      for (let f of files) {
+        formData.append("files", f);
+      }
+
+      const upRes = await fetch(`${API}/producto/${prodId}/imagenes`, {
+        method: "POST",
+        headers: { 
+          "Authorization": token 
+        },
+        body: formData
+      });
+
+      if (!upRes.ok) {
+        const errUp = await upRes.text();
+        console.warn("Error al subir imágenes:", errUp);
+        alert("Producto creado, pero hubo un problema al subir las imágenes");
+      } else {
+        console.log("Imágenes subidas con éxito");
+        alert("Producto e imágenes creados correctamente");
+      }
+    } else {
+      alert("Producto creado correctamente (sin imágenes)");
+    }
+
+    // CAMBIO 6: Limpiar formulario después del éxito
+    document.getElementById("formProducto").reset();
+    
+  } catch (error) {
+    console.error("Error en enviarProducto:", error);
+    alert(error.message || "Ocurrió un error al crear el producto");
+  }
+}

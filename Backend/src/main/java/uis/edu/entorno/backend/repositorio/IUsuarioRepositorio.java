@@ -36,4 +36,7 @@ public interface IUsuarioRepositorio extends JpaRepository<Usuario, Integer> {
 
 	//se utilizan las query por la notacion de los atributos, ya que es complejo la toma de mayuscula
 	//por ende se define de esta forma, ya que no se aplica directamente el metodo
+
+	@Query(value = "SELECT * FROM usuario WHERE Email = :email", nativeQuery = true)
+    Usuario findByEmail(@Param("email") String email);
 }
