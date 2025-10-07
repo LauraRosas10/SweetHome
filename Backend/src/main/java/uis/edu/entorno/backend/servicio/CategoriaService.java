@@ -1,12 +1,14 @@
 package uis.edu.entorno.backend.servicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import uis.edu.entorno.backend.modelo.Categoria;
+import uis.edu.entorno.backend.modelo.Producto;
 import uis.edu.entorno.backend.repositorio.ICategoriaRepositorio;
 
 
@@ -42,6 +44,10 @@ public class CategoriaService implements ICategoriaService {
 		//nueva categoria
 		return categoriaRepositorio.save(categoria);
 	}
+
+	public Optional<Categoria> obtenerPorId(int id) {
+        return categoriaRepositorio.findById(id);
+    }
 
 
 	

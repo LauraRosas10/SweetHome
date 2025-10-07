@@ -40,8 +40,14 @@ document.getElementById("userfrom").addEventListener("submit", async function (e
             const data = await response.json();
             console.log("Respuesta del backend:", data);
             if (data === 1) {
+                localStorage.setItem("token", "cliente-validado"); 
                 mostrarNotificacion("Login exitoso", true);
                 limpiarCamposLogin();
+
+                const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/";
+                localStorage.removeItem("redirectAfterLogin");
+                window.location.href = redirectUrl;
+
                 // Aquí puedes redirigir o guardar datos en localStorage
             } else {
                 console.log("Login no exitoso:", data);

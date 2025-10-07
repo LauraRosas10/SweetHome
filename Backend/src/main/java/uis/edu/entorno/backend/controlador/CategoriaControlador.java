@@ -19,7 +19,7 @@ import uis.edu.entorno.backend.servicio.CategoriaService;
 
 
 @RestController
-@RequestMapping("/categoria")  //Todos los metodos inician por esta ruta
+@RequestMapping("/categorias")  //Todos los metodos inician por esta ruta
 public class CategoriaControlador {
 
 	@Autowired

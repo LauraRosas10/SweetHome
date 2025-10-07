@@ -1,6 +1,7 @@
 package uis.edu.entorno.backend.servicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,10 @@ public class ProductoService implements IProductoService{
 		return "Producto eliminado exitosamente";
 	}
 	
-	
+	@Override
+    public Optional<Producto> obtenerPorId(Integer id) {
+        return productoRepositorio.findById(id);
+    
+	}
 	
 }

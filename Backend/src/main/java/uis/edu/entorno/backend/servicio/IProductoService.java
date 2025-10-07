@@ -1,6 +1,7 @@
 package uis.edu.entorno.backend.servicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import uis.edu.entorno.backend.modelo.Producto;
 
@@ -21,5 +22,5 @@ public interface IProductoService {
 	
 	String eliminarProd(int id);
 	
-	
+	Optional<Producto> obtenerPorId(Integer id);
 }

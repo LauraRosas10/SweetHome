@@ -3,6 +3,7 @@ package uis.edu.entorno.backend.servicio;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import uis.edu.entorno.backend.repositorio.IUsuarioRepositorio;
 import uis.edu.entorno.backend.modelo.LoginDto;
+import uis.edu.entorno.backend.modelo.Producto;
 import uis.edu.entorno.backend.modelo.Usuario;
 
 
@@ -111,6 +113,10 @@ public class UsuarioService implements IUsuarioService {
 			
 		}
 	}
+
+	 public Optional<Usuario> obtenerPorId(int id) {
+	        return usuarioRepositorio.findById(id);
+	    }
 
 
 }
