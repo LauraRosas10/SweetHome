@@ -50,7 +50,7 @@ document.getElementById("userfrom").addEventListener("submit", async function (e
                 limpiarCamposLogin();
 
                 // Redirigir a la página que estaba intentando acceder
-                const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/Frontend/index.html";
+                const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/Frontend/frontendIndex/index.html";
                 localStorage.removeItem("redirectAfterLogin");
                 
                 setTimeout(() => {

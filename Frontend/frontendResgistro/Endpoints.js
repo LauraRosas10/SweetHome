@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (response.ok) {
             const roles = await response.json();
             // Filtrar solo roles activos (ajusta la condición según tu backend)
-            const rolesActivos = roles.filter(rol => rol.estado === 'Activo' || rol.estado === true);
+            const rolesActivos = roles.filter(rol => rol.estado === 'activo' || rol.estado === true);
             rolesActivos.forEach(rol => {
                 const option = document.createElement("option");
                 option.value = rol.id_rol; // tener bien el nombre de la BD

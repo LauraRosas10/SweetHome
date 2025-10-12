@@ -31,7 +31,6 @@ public class DetallePedidoControlador{
 	//todos los detalles
 	@GetMapping("/")
 	public List<DetallePedido> listarDetallePedidos() {
-		// TODO Auto-generated method stub
 		return detallePedidoService.getDetallePedidos();
 	}
 

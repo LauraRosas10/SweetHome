@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uis.edu.entorno.backend.modelo.LoginDto;
 import uis.edu.entorno.backend.modelo.Usuario;
+import uis.edu.entorno.backend.modelo.UsuarioLoginResponseDto;
 import uis.edu.entorno.backend.repositorio.IUsuarioRepositorio;
 
 @Service
@@ -91,8 +92,8 @@ public class UsuarioService implements IUsuarioService {
                 .body("Contraseña incorrecta");
         }
         
-        // 4. Login exitoso - Devolver usuario (sin contraseña por seguridad)
-        usuarioEncontrado.setContraseña(null); 
+        UsuarioLoginResponseDto usuarioResponse = new UsuarioLoginResponseDto(usuarioEncontrado);
+
         
         return ResponseEntity.ok(usuarioEncontrado);
     }

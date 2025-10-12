@@ -11,7 +11,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   
-  // CAMBIO 1: Validación simple sin llamadas al backend
   if (!token || !userId) {
     console.log("No hay sesión activa, redirigiendo a login...");
     localStorage.setItem("redirectAfterLogin", window.location.pathname);
@@ -20,8 +19,6 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   
   console.log("Usuario logueado con ID:", userId);
-  
-  // Usuario verificado, inicializar la página
   initProductoPage();
 });
 
@@ -82,7 +79,6 @@ async function enviarProducto() {
     const token = localStorage.getItem("token");
     const userId = parseInt(localStorage.getItem("userId"), 10);
 
-    // CAMBIO 2: Validación mejorada
     if (!token || !userId || isNaN(userId)) {
       alert("Sesión expirada. Por favor inicia sesión nuevamente.");
       localStorage.clear();
@@ -96,7 +92,6 @@ async function enviarProducto() {
       return;
     }
 
-    // CAMBIO 3: Construir el payload correctamente
     const payload = {
       nombre: document.getElementById("nombre").value.trim(),
       stock: parseInt(document.getElementById("stock").value, 10),
@@ -128,7 +123,7 @@ async function enviarProducto() {
 
     console.log("Payload a enviar:", JSON.stringify(payload, null, 2));
 
-    // CAMBIO 4: Crear el producto
+    // CREAR EL PRODUCTO
     const createRes = await fetch(`${API}/producto/nuevo`, {
       method: "POST",
       headers: {
@@ -147,11 +142,13 @@ async function enviarProducto() {
     const creado = await createRes.json();
     console.log("Producto creado exitosamente:", creado);
 
-    // CAMBIO 5: Subir imágenes si existen
+    // SUBIR IMÁGENES SI EXISTEN
     const prodId = creado.id_producto;
     const files = document.getElementById("imagenes").files;
 
     if (files.length > 0) {
+      console.log("Subiendo", files.length, "imagen(es)...");
+      
       const formData = new FormData();
       for (let f of files) {
         formData.append("files", f);
@@ -169,19 +166,29 @@ async function enviarProducto() {
         const errUp = await upRes.text();
         console.warn("Error al subir imágenes:", errUp);
         alert("Producto creado, pero hubo un problema al subir las imágenes");
-      } else {
-        console.log("Imágenes subidas con éxito");
-        alert("Producto e imágenes creados correctamente");
+        volverTienda();
+        return;
       }
+      
+      console.log("Imágenes subidas con éxito");
+      alert("Producto e imágenes creados correctamente");
     } else {
       alert("Producto creado correctamente (sin imágenes)");
     }
 
-    // CAMBIO 6: Limpiar formulario después del éxito
+    // LIMPIAR FORMULARIO Y VOLVER
     document.getElementById("formProducto").reset();
+    volverTienda();
     
   } catch (error) {
     console.error("Error en enviarProducto:", error);
     alert(error.message || "Ocurrió un error al crear el producto");
   }
+}
+
+// ============================
+// Volver a la tienda
+// ============================
+function volverTienda() {
+    window.location.href = "../frontendTienda/tienda.html";
 }
