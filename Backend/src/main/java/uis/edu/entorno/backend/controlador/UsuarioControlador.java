@@ -5,21 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
+
 
 
 import uis.edu.entorno.backend.servicio.UsuarioService;
 import uis.edu.entorno.backend.modelo.LoginDto;
 import uis.edu.entorno.backend.modelo.Usuario;
-
+import uis.edu.entorno.backend.seguridad.JwtTokenProvider;
+import uis.edu.entorno.backend.controlador.LoginResponseDto;
 @RestController //especifica que esta clase esta diseñada para manejar solicitudes web y devolver datos
 @RequestMapping("/usuario")  //Todos los metodos inician por esta ruta
 //@CrossOrigin(origins = "http://127.0.0.1:5500") // o "*" para permitir todos los orígenes del frontend
@@ -29,6 +24,10 @@ public class UsuarioControlador {
 	@Autowired//conectar automáticamente los componentes 
 	//utilizamos los metodos de la clase
 	UsuarioService usuarioService;
+	
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
+	
 	
 	//Listar usuarios
 	@GetMapping("/")//Le dice al servidor que este método debe manejar 
@@ -109,9 +108,46 @@ public class UsuarioControlador {
 		return responseLogin;
 	}
 	
-	@PostMapping("/login")
-	public ResponseEntity<?> loginCliente (@RequestBody LoginDto usuario){
-		
-		return usuarioService.ingresar(usuario);
-	}
+	// ========== LOGIN (devuelve JWT) ==========
+    @PostMapping("/login")
+    public ResponseEntity<?> loginCliente(@RequestBody LoginDto loginDto) {
+        try {
+            // Buscar usuario
+            Usuario usuario = usuarioService.buscarPorEmail(loginDto.getEmail());
+
+            if (usuario == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Usuario no encontrado");
+            }
+
+            // Verificar contraseña
+            if (!usuario.getContraseña().equals(loginDto.getContraseña())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Contraseña incorrecta");
+            }
+
+            // GENERAR JWT
+            String token = jwtTokenProvider.generarToken(
+                usuario.getId_usuario(),
+                usuario.getEmail(),
+                usuario.getNombre()
+            );
+
+            // Crear respuesta con token
+            LoginResponseDto response = new LoginResponseDto(
+                usuario.getId_usuario(),
+                usuario.getNombre(),
+                usuario.getApellidos(),
+                usuario.getEmail(),
+                usuario.getRol().getNombre(),
+                token
+            );
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error al procesar login");
+        }
+    }
 }

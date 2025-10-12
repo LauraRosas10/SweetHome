@@ -10,6 +10,8 @@ body {
     color: #333;
 }
 
+
+
 /* ========== TOP HEADER ========== */
 .top-header {
     background-color: #00ABE4;
@@ -25,11 +27,10 @@ body {
     color: #333;
 }
 
-.logo-text {
-    background-color: #333;
-    color: #00ABE4;
-    padding: 5px 15px;
-    border-radius: 3px;
+.logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
 }
 
 .volver-link {

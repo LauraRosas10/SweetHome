@@ -52,9 +52,9 @@ function configurarTiendaLink() {
         e.preventDefault();
         const token = localStorage.getItem("token");
         if (token) {
-            window.location.href = "/Frontend/frontendTienda/tienda.html";
+            window.location.href = "../frontendTienda/tienda.html";
         } else {
-            window.location.href = "/Frontend/frontendLogin/login_html.html";
+            window.location.href = "../frontendLogin/login_html.html";
         }
     });
 }
@@ -106,7 +106,7 @@ async function cargarProductosDestacados() {
 
 function mostrarProductos(productos) {
     const container = document.getElementById("productosContainer");
-    if (!container) return; // Si no existe el elemento, no hace nada
+    if (!container) return;
     
     if (!productos || productos.length === 0) {
         container.innerHTML = "<p>No hay productos disponibles.</p>";
@@ -114,19 +114,24 @@ function mostrarProductos(productos) {
     }
 
     container.innerHTML = productos
-        .map(p => `
-            <div class="producto-card">
-                <div class="producto-imagen">
-                    ${p.imagen ? `<img src="${p.imagen}" alt="${p.nombre}">` : "<i class='fas fa-box' style='font-size:50px;color:#ccc;'></i>"}
-                </div>
-                <div class="producto-info">
-                    <h3>${p.nombre}</h3>
-                    <p class="precio">$${p.precio.toLocaleString('es-CO')}</p>
-                    <p class="stock">Stock: ${p.stock}</p>
-                </div>
+    .map(p => `
+        <div class="producto-card" onclick="verProducto(${p.id_producto})" style="cursor: pointer;">
+            <div class="producto-imagen">
+                ${p.imagen ? `<img src="${p.imagen}" alt="${p.nombre}">` : "<i class='fas fa-box' style='font-size:50px;color:#ccc;'></i>"}
             </div>
-        `)
-        .join("");
+            <div class="producto-info">
+                <h3>${p.nombre}</h3>
+                <p class="precio">$${p.precio.toLocaleString('es-CO')}</p>
+                <p class="stock">Stock: ${p.stock}</p>
+            </div>
+        </div>
+    `)
+    .join("");
+}
+
+// Agregar esta función
+function verProducto(productId) {
+    window.location.href = `../frontendDetalles/Detalles.html?id=${productId}`;
 }
 
 

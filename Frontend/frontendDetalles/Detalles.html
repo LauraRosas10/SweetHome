@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto - Sweet Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Detalles.css">
+    <link rel="icon" type="image/png" href="../Imagenes/android-chrome-192x192.png">
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="top-header">
+        <div class="logo">
+            <img src="../Imagenes/iconSweetHome.jpg" alt="Sweet Home" class="logo-img">
+        </div>
+        <a href="javascript:history.back()" class="volver-link">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="container">
+        <div class="detalle-producto">
+            <div class="producto-imagen-grande">
+                <img id="imagenPrincipal" src="" alt="Producto">
+            </div>
+
+            <div class="producto-info-detalle">
+                <h1 id="nombreProducto"></h1>
+                
+                <div class="precio-info">
+                    <span class="precio" id="precioProducto"></span>
+                    <span class="stock" id="stockProducto"></span>
+                </div>
+
+                <div class="vendedor-info">
+                    <p><strong>Vendedor:</strong> <span id="vendedorProducto"></span></p>
+                    <p><strong>Categoría:</strong> <span id="categoriaProducto"></span></p>
+                </div>
+
+                <div class="descripcion">
+                    <h3>Descripción</h3>
+                    <p id="descripcionProducto"></p>
+                </div>
+
+                <div class="acciones">
+                    <button class="btn-comprar" onclick="agregarCarrito()">
+                        <i class="fas fa-shopping-cart"></i> Agregar al carrito
+                    </button>
+                </div>
+
+                <div id="botonesAdmin" class="botones-admin" style="display: none;">
+                    <button class="btn-editar" onclick="editarProducto()">
+                        <i class="fas fa-edit"></i> Editar
+                    </button>
+                    <button class="btn-eliminar" onclick="eliminarProducto()">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Detalles.js"></script>
+</body>
+</html>

@@ -6,6 +6,7 @@
     <title>Sweet Home - Tienda Online</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index_css.css">
+    <link rel="icon" type="image/png" href="../Imagenes/android-chrome-192x192.png">
 </head>
 <body>
     
@@ -14,7 +15,7 @@
     <!-- ========== TOP HEADER ========== -->
     <div class="top-header">
         <div class="logo">
-            <span class="logo-text">SWEET HOME</span>
+            <img src="../Imagenes/iconSweetHome.jpg" alt="Sweet Home" class="logo-img">
         </div>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Buscar productos" onkeyup="buscarProductos()">
@@ -35,8 +36,8 @@
         </div>
 
         <div class="nav-menu">
-            <a href="/Frontend/frontendIndex/index.html" class="active">Inicio</a>
-            <a href="/Frontend/frontendTienda/tienda.html" id="tiendaLink">Tienda</a>
+            <a href="../frontendIndex/index.html" class="active">Inicio</a>
+            <a href="../frontendTienda/tienda.html" id="tiendaLink">Tienda</a>
             <a href="#">Contacto</a>
         </div>
 
@@ -49,7 +50,7 @@
                 <i class="fas fa-shopping-cart"></i>
                 <span class="badge" id="cartBadge" style="display: none;">0</span>
             </a>
-            <a href="/Frontend/frontendLogin/login_html.html" class="icon-item" id="userIcon">
+            <a href="../frontendLogin/login_html.html" class="icon-item" id="userIcon">
                 <i class="fas fa-user"></i>
             </a>
         </div>

@@ -46,7 +46,7 @@ async function cargarCategorias() {
   try {
     const token = localStorage.getItem("token");
     const res = await fetch(`${API}/categorias/`, {
-      headers: { "Authorization": token }
+      headers: { "Authorization": "Bearer "+token }
     });
 
     if (!res.ok) {
@@ -128,7 +128,7 @@ async function enviarProducto() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token
+        "Authorization":"Bearer "+ token
       },
       body: JSON.stringify(payload)
     });
@@ -157,7 +157,7 @@ async function enviarProducto() {
       const upRes = await fetch(`${API}/producto/${prodId}/imagenes`, {
         method: "POST",
         headers: { 
-          "Authorization": token 
+          "Authorization": "Bearer "+token 
         },
         body: formData
       });

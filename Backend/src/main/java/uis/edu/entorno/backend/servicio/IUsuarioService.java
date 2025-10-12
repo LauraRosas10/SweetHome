@@ -19,6 +19,8 @@ public interface IUsuarioService {
     
     String borrarUsuario(int id);
     
+    Usuario buscarPorEmail(String email);
+    
     Optional<Usuario> obtenerPorId(Integer id);
     
     // Métodos de autenticación

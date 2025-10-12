@@ -9,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import uis.edu.entorno.backend.controlador.LoginResponseDto;
 import uis.edu.entorno.backend.modelo.LoginDto;
 import uis.edu.entorno.backend.modelo.Usuario;
 import uis.edu.entorno.backend.modelo.UsuarioLoginResponseDto;
 import uis.edu.entorno.backend.repositorio.IUsuarioRepositorio;
+import uis.edu.entorno.backend.seguridad.JwtTokenProvider;
 
 @Service
 @Transactional
@@ -21,6 +23,10 @@ public class UsuarioService implements IUsuarioService {
     @Autowired
     private IUsuarioRepositorio usuarioRepositorio;
 
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+    
+    
     @Override
     public List<Usuario> getUsuarios() {
         return usuarioRepositorio.findAll();
@@ -52,49 +58,47 @@ public class UsuarioService implements IUsuarioService {
         return usuarioRepositorio.findById(id);
     }
 
-    // ============================================
-    // MÉTODO LOGIN SIMPLE (devuelve 1 o 0)
-    // ============================================
-    @Override
-    public int login(LoginDto loginDto) {
-        Usuario usuario = usuarioRepositorio.findByEmail(loginDto.getEmail());
-        
-        if (usuario == null) {
-            return 0; // Usuario no encontrado
-        }
-        
-        if (!usuario.getContraseña().equals(loginDto.getContraseña())) {
-            return 0; // Contraseña incorrecta
-        }
-        
-        return 1; // Login exitoso
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepositorio.findByEmail(email);
     }
-
-    // ============================================
-    // MÉTODO LOGIN QUE DEVUELVE EL USUARIO COMPLETO
-    // *** ESTE ES EL QUE NECESITAS ***
-    // ============================================
+    
     @Override
     public ResponseEntity<?> ingresar(LoginDto loginDto) {
-        
-        // 1. Buscar usuario por email
-        Usuario usuarioEncontrado = usuarioRepositorio.findByEmail(loginDto.getEmail());
-        
-        // 2. Verificar si existe el usuario
+        // Usar el método del servicio en lugar de llamar directo al repositorio
+        Usuario usuarioEncontrado = buscarPorEmail(loginDto.getEmail());
+
         if (usuarioEncontrado == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body("Usuario no encontrado");
         }
-        
-        // 3. Verificar contraseña
+
         if (!usuarioEncontrado.getContraseña().equals(loginDto.getContraseña())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body("Contraseña incorrecta");
         }
-        
-        UsuarioLoginResponseDto usuarioResponse = new UsuarioLoginResponseDto(usuarioEncontrado);
 
-        
-        return ResponseEntity.ok(usuarioEncontrado);
+        // Generar JWT
+        String token = jwtTokenProvider.generarToken(
+            usuarioEncontrado.getId_usuario(),
+            usuarioEncontrado.getEmail(),
+            usuarioEncontrado.getNombre()
+        );
+
+        // Crear response con token
+        LoginResponseDto response = new LoginResponseDto(
+            usuarioEncontrado.getId_usuario(),
+            usuarioEncontrado.getNombre(),
+            usuarioEncontrado.getApellidos(),
+            usuarioEncontrado.getEmail(),
+            usuarioEncontrado.getRol().getNombre(),
+            token);
+
+        return ResponseEntity.ok(response);
     }
+
+	@Override
+	public int login(LoginDto loginDto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

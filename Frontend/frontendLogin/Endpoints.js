@@ -41,7 +41,7 @@ document.getElementById("userfrom").addEventListener("submit", async function (e
             // CAMBIO 2: Verificar que recibimos los datos del usuario
             if (data && data.id_usuario) {
                 // CAMBIO 3: Guardar token real (por ahora simulado) y userId
-                localStorage.setItem("token", "Bearer-" + data.id_usuario); 
+                localStorage.setItem("token", data.token);  // ← JWT real
                 localStorage.setItem("userId", data.id_usuario);
                 localStorage.setItem("userEmail", data.email);
                 localStorage.setItem("userName", data.nombre);
