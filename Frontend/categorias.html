@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWEET HOME - Gestión de Categorías</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container-fluid">
+            <a href="index.html"><img src="./public/1.png" style="width: 180px; height: 80px; margin-left:40px;" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="container collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="font-size: 1.2rem;">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="productos.html">Productos</a>
+                </li>
+                
+                <li class="nav-item " id="nav-categorias">
+                    <a class="nav-link" href="categorias.html">Categorías</a>
+                </li>
+                <li class="nav-item " id="nav-usuarios">
+                    <a class="nav-link" href="usuario.html">Usuarios</a>
+                </li>
+                
+                <li class="nav-item " id="nav-gestion">
+                    <a class="nav-link" href="admin-productos.html">Gestion</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Carrito <i class="bi bi-cart-fill"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link d-none" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-person-circle fs-5"></i> Iniciar Sesión
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Gestión de Categorías</h1>
+                <button class="btn btn-primary" 
+        data-bs-toggle="modal" 
+        data-bs-target="#modalAgregarCategoria"
+        onclick="limpiarFormulario()"> <i class="bi bi-plus-circle me-2"></i>Agregar Categoría
+</button>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Estado</th> 
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-categorias">
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Agregar/Editar Categoría -->
+    <div class="modal fade" id="modalAgregarCategoria" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitulo">Agregar Categoría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCategoria">
+                        <input type="hidden" id="categoriaId">
+                        <div class="mb-3">
+                            <label for="categoriaNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="categoriaNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoriaDescripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="categoriaDescripcion" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoriaEstado" class="form-label">Estado</label>
+                            <select class="form-select" id="categoriaEstado">
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="guardarCategoria()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Recordarme</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Iniciar Sesión</button>
+                        <div class="text-center">
+                            <a href="#" class="text-muted small">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <p class="mb-0">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-title">TuMarca</h4>
+                    <p class="footer-text">Transformando espacios con diseño excepcional</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-subtitle">Comprar</h5>
+                    <a href="#" class="footer-link">Todos los productos</a>
+                    <a href="#" class="footer-link">Nuevos ingresos</a>
+                    <a href="#" class="footer-link">Ofertas</a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-subtitle">Ayuda</h5>
+                    <a href="#" class="footer-link">Contacto</a>
+                    <a href="#" class="footer-link">Envíos</a>
+                    <a href="#" class="footer-link">Devoluciones</a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-subtitle">Newsletter</h5>
+                    <p class="footer-text mb-3">Recibe ofertas exclusivas</p>
+                    <input type="email" class="form-control" placeholder="Tu email">
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4 text-center">
+                <p class="footer-copyright">2025 SWEET HOME</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="categorias.js"></script>
+    <script src="login.js"> </script>
+    <script src="barra-nav.js"> </script>
+
+
+    
+    
+</body>
+</html>

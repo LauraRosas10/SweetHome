@@ -2,11 +2,13 @@ package uis.edu.entorno.backend.modelo;
 
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -28,6 +30,8 @@ public class Producto {
 	private int Stock;
 	private float Precio;
 	private String Descripcion;
+	@Lob
+	@Column(name = "Imagen", columnDefinition = "LONGTEXT")
 	private String Imagen;
 	
 	

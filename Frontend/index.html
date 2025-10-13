@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWEET HOME</title>
+
+    <!-- Agregando Bootstrap CSS y Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+    <!-- CSS externo separado -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container-fluid">
+            <a href="index.html"><img src="./public/1.png" style="width: 180px; height: 80px; margin-left:40px;" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="container collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="font-size: 1.2rem;">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="productos.html">Productos</a>
+                </li>
+                
+                <li class="nav-item d-none" id="nav-categorias">
+                    <a class="nav-link" href="categorias.html">Categorías</a>
+                </li>
+                <li class="nav-item d-none" id="nav-usuarios">
+                    <a class="nav-link" href="usuario.html">Usuarios</a>
+                </li>
+                
+                <li class="nav-item d-none" id="nav-gestion">
+                    <a class="nav-link" href="admin-productos.html">Gestion</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Carrito <i class="bi bi-cart-fill"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-person-circle fs-5"></i> Iniciar Sesión
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section simplificado para página de inicio -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title">Descubre nuestra colección exclusiva</h1>
+                    <p class="hero-subtitle mx-auto">Productos cuidadosamente seleccionados que transforman espacios y elevan experiencias</p>
+                    <a href="productos.html" class="btn btn-dark btn-lg">Explorar Colección</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de características -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-truck fs-1 text-primary mb-3"></i>
+                    <h3>Envío Gratis</h3>
+                    <p class="text-muted">En pedidos superiores a €50</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-shield-check fs-1 text-primary mb-3"></i>
+                    <h3>Compra Segura</h3>
+                    <p class="text-muted">Protección en todas tus compras</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-arrow-repeat fs-1 text-primary mb-3"></i>
+                    <h3>Devoluciones</h3>
+                    <p class="text-muted">30 días para devolver</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-title">SWEET HOME</h4>
+                    <p class="footer-text">Transformando espacios con diseño excepcional</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-subtitle">Comprar</h5>
+                    <a href="#" class="footer-link">Todos los productos</a>
+                    <a href="#" class="footer-link">Nuevos ingresos</a>
+                    <a href="#" class="footer-link">Ofertas</a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-subtitle">Ayuda</h5>
+                    <a href="#" class="footer-link">Contacto</a>
+                    <a href="#" class="footer-link">Envíos</a>
+                    <a href="#" class="footer-link">Devoluciones</a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-subtitle">Newsletter</h5>
+                    <p class="footer-text mb-3">Recibe ofertas exclusivas</p>
+                    <input type="email" class="form-control" placeholder="Tu email">
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4 text-center">
+                <p class="footer-copyright">2025 SWEET HOME</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS y archivo JavaScript externo -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+
+    <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 rounded-4 overflow-hidden glass-modal">
+        <div class="row g-0">
+            
+            <!-- Imagen lateral -->
+            <div class="col-md-6 d-none d-md-block">
+            <img src="./public/1.png"
+                alt="login image" class="img-fluid h-100" style="max-width: 100%; height: auto; object-fit: contain;">
+            </div>
+
+            <!-- Formulario -->
+            <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+            <form id="userform" class="login__form text-center">
+                <h1 class="login__title mb-4">Iniciar Sesión</h1>
+
+                <div class="login__content">
+                <div class="mb-3 text-start">
+                    <label for="Email" class="form-label fw-semibold text-dark">Correo electrónico</label>
+                    <input type="email" id="Email" name="email" class="form-control login__input" 
+                        placeholder="Ingresa tu correo" required>
+                    <div id="error-Email" class="error-message"></div>
+                </div>
+
+                <div class="mb-3 text-start position-relative">
+                <label for="login-pass" class="form-label fw-semibold text-dark">Contraseña</label>
+                <input type="password" id="login-pass" name="password" 
+                        class="form-control login__input pe-5" placeholder="********" required>
+
+                <!-- Ojito -->
+                <i class="bi bi-eye-slash-fill toggle-password" id="togglePassword"></i>
+
+                <div id="error-login-pass" class="error-message"></div>
+                </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="remember">
+                    <label for="remember" class="form-check-label small">Recordarme</label>
+                </div>
+                <a href="#" class="small text-decoration-none text-dark">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn btn-dark w-100 py-2 rounded-3">Entrar</button>
+
+                <p class="login__register mt-4 mb-0 text-dark">
+                ¿No tienes cuenta? 
+                <a href="registro.html" class="text-decoration-none fw-semibold">Regístrate</a>
+                </p>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    
+    <script src="barra-nav.js"></script>
+    <script src="login.js"></script>
+
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("login-pass");
+
+    togglePassword.addEventListener("click", function () {
+        const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+        passwordField.setAttribute("type", type);
+
+        // Cambiar icono
+        this.classList.toggle("bi-eye");
+        this.classList.toggle("bi-eye-slash-fill");
+    });
+    });
+    </script>
+
+
+</body>
+</html>
+
