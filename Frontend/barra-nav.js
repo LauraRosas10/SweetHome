@@ -13,7 +13,8 @@ function logoutUser() {
     
     // Redirigir y alertar
     alert("Sesión cerrada correctamente.");
-    window.location.href = 'index.html'; 
+    window.location.href = 'productos.html';
+
 }
 
 function updateNavbarVisibility() {
