@@ -88,55 +88,65 @@
     // carga de productos en la tabla
 
     async function cargarProductos() {
-        const tbody = document.getElementById("productosTableBody");
-        tbody.innerHTML = '<tr><td colspan="7" class="text-center">Cargando productos...</td></tr>';
+    const tbody = document.getElementById("productosTableBody");
+    tbody.innerHTML = '<tr><td colspan="9" class="text-center">Cargando productos...</td></tr>';
 
-        const token = localStorage.getItem('userToken');
-        const headers = { 'Content-Type': 'application/json' };
-        if (token) headers['Authorization'] = `Bearer ${token}`;
+    const token = localStorage.getItem('userToken');
+    const role = localStorage.getItem('userRole');
+    const userId = localStorage.getItem('userId');
 
-        try {
-            const response = await fetch(ENDPOINTS.PRODUCTS, { headers });
-            if (response.ok) {
-                const productosDB = await response.json();
-                tbody.innerHTML = "";
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
 
-                productosDB.forEach(producto => {
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td>${producto.id_producto}</td>
-                        <td>
-                            <img src="${producto.imagen}" alt="${producto.nombre}" style="width:60px; height:60px; object-fit:cover; border-radius:8px;">
-                        </td>
-                        <td><strong>${producto.nombre}</strong></td>
-                        <td>${producto.descripcion.substring(0, 50)}${producto.descripcion.length > 50 ? '...' : ''}</td>
-                        <td><strong>€${producto.precio.toFixed(2)}</strong></td>
-                        <td><span class="badge bg-primary">${producto.id_categoria.nombre}</span></td>
-                        <td>${producto.stock}</td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editarProducto(${producto.id_producto})">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto(${producto.id_producto})">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
+    try {
+        const response = await fetch(ENDPOINTS.PRODUCTS, { headers });
+        if (response.ok) {
+            let productosDB = await response.json();
+            tbody.innerHTML = "";
 
-                if (productosDB.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" class="text-center">No hay productos registrados.</td></tr>';
-                }
-            } else {
-                const errorText = await response.text();
-                alert(`Error ${response.status} al cargar productos: ${errorText.substring(0,100)}`);
+            // 🔹 FILTRAR según el rol
+            if (role !== "Administrador") {
+                productosDB = productosDB.filter(p => p.id_usuario.id_usuario == userId);
             }
-        } catch (error) {
-            console.error("Error de red:", error);
-            alert("No se pudo conectar al servidor de productos.");
+
+            // 🔹 Mostrar productos filtrados
+            productosDB.forEach(producto => {
+                const estadoBadgeClass = producto.estado === 'DISPONIBLE' ? 'bg-success' : 'bg-danger';
+                const tr = document.createElement("tr");
+
+                tr.innerHTML = `
+                    <td>${producto.id_producto}</td>
+                    <td><img src="${producto.imagen}" alt="${producto.nombre}" 
+                        style="width:60px; height:60px; object-fit:cover; border-radius:8px;"></td>
+                    <td><strong>${producto.nombre}</strong></td>
+                    <td>${producto.descripcion.substring(0, 50)}${producto.descripcion.length > 50 ? '...' : ''}</td>
+                    <td><strong>$${producto.precio.toFixed(2)}</strong></td>
+                    <td><span class="badge bg-primary">${producto.id_categoria.nombre}</span></td>
+                    <td>${producto.stock}</td>
+                    <td><span class="badge ${estadoBadgeClass}">${producto.estado}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-1" 
+                            onclick="editarProducto(${producto.id_producto})">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (productosDB.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center">No hay productos registrados.</td></tr>';
+            }
+        } else {
+            const errorText = await response.text();
+            alert(`Error ${response.status} al cargar productos: ${errorText.substring(0,100)}`);
         }
+    } catch (error) {
+        console.error("Error de red:", error);
+        alert("No se pudo conectar al servidor de productos.");
     }
+}
+
 
 
 
@@ -155,16 +165,20 @@
         const precio = parseFloat(document.getElementById("productoPrecio").value);
         const categoriaId = document.getElementById("productoCategoria").value;
         const stock = parseInt(document.getElementById("productoStock").value);
+        const estado = document.getElementById("productoEstado").value;
+
 
         const token = localStorage.getItem('userToken');
         const userId = localStorage.getItem('userId');
         if (!userId) { alert("Error: ID de usuario no encontrado"); return; }
 
         const productoPayload = {
-            nombre, descripcion, precio, stock, imagen: imagenData,
+            nombre, descripcion, precio, stock,  estado: estado, imagen:imagenData,
             id_categoria: { id_categoria: Number(categoriaId) },
             id_usuario: { id_usuario: Number(userId) }
         };
+
+
         console.log(localStorage.getItem('userToken'));
 
         console.log("Payload a enviar:", productoPayload);
@@ -250,13 +264,19 @@
         if (!response.ok) throw new Error(`Error ${response.status}`);
         const producto = await response.json();
 
-        document.getElementById("productoModalLabel").textContent = "Editar Producto";
+        document.getElementById("productoModalLabel").textContent = id 
+            ? "Editar Producto" 
+            : "Nuevo Producto";
+
+
         document.getElementById("productoId").value = producto.id_producto;
         document.getElementById("productoNombre").value = producto.nombre;
         document.getElementById("productoDescripcion").value = producto.descripcion;
         document.getElementById("productoPrecio").value = producto.precio;
         document.getElementById("productoStock").value = producto.stock;
         document.getElementById("productoCategoria").value = producto.id_categoria.id_categoria;
+        document.getElementById("productoEstado").value = producto.estado.toUpperCase();
+
 
         const imagePreview = document.getElementById("imagePreview");
         const dropZoneContent = document.getElementById("dropZoneContent");
@@ -266,7 +286,10 @@
             imagePreview.style.display = "block";
             dropZoneContent.style.display = "none";
             document.getElementById("productoImagenData").value = producto.imagen;
+
             imagenCargada = producto.imagen;
+
+
         } else {
             resetearDropZone();
         }
@@ -337,6 +360,8 @@
         if (form) form.reset();
         document.getElementById("productoId").value = "";
         document.getElementById("productoImagenData").value = "";
+        document.getElementById("productoEstado").value = "DISPONIBLE";
+
         resetearDropZone();
     }
 

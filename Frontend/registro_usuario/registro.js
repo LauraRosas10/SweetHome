@@ -49,7 +49,7 @@ async function registrarUsuario(userData) {
         if (response.ok) {
             showMessage('✅ ¡Registro exitoso! Ya puedes iniciar sesión.', 'success');
             document.getElementById("registroForm").reset();
-            setTimeout(() => window.location.href = "index.html", 2000);
+            setTimeout(() => window.location.href = "/index.html", 2000);
         } else if (response.status === 403) {
             showMessage('🚫 No tienes permisos para registrar. Revisa la configuración de seguridad del backend.', 'danger');
         } else {

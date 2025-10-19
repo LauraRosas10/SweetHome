@@ -12,39 +12,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container-fluid">
-            <a href="index.html"><img src="./public/1.png" style="width: 180px; height: 80px; margin-left:40px;" alt=""></a>
+            <a href="../index.html"><img src="../public/1.png" style="width: 180px; height: 80px; margin-left:40px;" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="container collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" style="font-size: 1.2rem;">
                     <li class="nav-item" id="nav-home">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link active" href="../index.html">Home</a>
                     </li>
                     <li class="nav-item" id="nav-productos">
                         <a class="nav-link" href="productos.html">Productos</a>
                     </li>
 
                     <li class="nav-item " id="nav-categorias">
-                        <a class="nav-link" href="categorias.html">Categorías</a>
+                        <a class="nav-link" href="../categoria/categorias.html">Categorías</a>
                         </li>
 
                         <li class="nav-item " id="nav-usuarios">
-                        <a class="nav-link" href="usuario.html">Usuarios</a>
+                        <a class="nav-link" href="../gestion_usuario/usuario.html">Usuarios</a>
                         </li>
 
                         <li class="nav-item " id="nav-gestion">
-                        <a class="nav-link" href="admin-productos.html">Gestión productos</a>
+                        <a class="nav-link" href="gestion_producto/admin-productos.html">Gestión productos</a>
                         </li>
 
 
-                    <li class="nav-item" id="nav-carrito">
-                        <a class="nav-link" href="#">Carrito <i class="bi bi-cart-fill"></i></a>
+                    <li class="nav-item" id="nav-registro">
+                        <a class="nav-link" href="#">Registrarse  <i class="bi bi-person-plus"></i></a>
                     </li>
 
                     <li class="nav-item" id="nav-login">
@@ -58,33 +58,33 @@
         </div>
     </nav>
 
-<section class="py-5" style="background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);">
-  <div class="container text-center">
+    <section class="py-5" style="background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);">
+    <div class="container text-center">
 
-     <h2 class="fw-bold mb-5" style="font-family:'Playfair Display', sans-serif; color:#0d3b66; letter-spacing: 1px; font-size: 2.5rem;">
-      Nuestros Productos
-    </h2>
+        <h2 class="fw-bold mb-5" style="font-family:'Playfair Display', sans-serif; color:#0d3b66; letter-spacing: 1px; font-size: 2.5rem;">
+        Nuestros Productos
+        </h2>
 
-    <!-- 🔹 Filtros de Categorías -->
-    <div id="filtros-categorias" class="mb-5 d-flex flex-wrap justify-content-center gap-2">
-      <!-- Los botones se insertan dinámicamente -->
+        <!-- Filtros de Categorías -->
+        <div id="filtros-categorias" class="mb-5 d-flex flex-wrap justify-content-center gap-2">
+        <!-- Los botones se insertan dinámicamente -->
+        </div>
+
+        <!-- Spinner de carga -->
+        <div id="loading" class="py-5 d-none">
+        <div class="spinner-border" role="status" style="width: 3rem; height: 3rem; color: #00b894;">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-3 text-muted">Cargando productos...</p>
+        </div>
+
+        <!-- Grid de Productos -->
+        <div id="productos-grid" 
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+        </div>
+
     </div>
-
-    <!-- 🔹 Spinner de carga -->
-    <div id="loading" class="py-5 d-none">
-      <div class="spinner-border" role="status" style="width: 3rem; height: 3rem; color: #00b894;">
-        <span class="visually-hidden">Cargando...</span>
-      </div>
-      <p class="mt-3 text-muted">Cargando productos...</p>
-    </div>
-
-    <!-- 🔹 Grid de Productos -->
-    <div id="productos-grid" 
-         class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
-    </div>
-
-  </div>
-</section>
+    </section>
 
 
     <footer class="footer">
@@ -126,7 +126,7 @@
             
             <!-- Imagen lateral -->
             <div class="col-md-6 d-none d-md-block">
-            <img src="./public/1.png"
+            <img src="../public/1.png"
                 alt="login image" class="img-fluid h-100" style="max-width: 100%; height: auto; object-fit: contain;">
             </div>
 
@@ -167,7 +167,7 @@
 
                 <p class="login__register mt-4 mb-0 text-dark">
                 ¿No tienes cuenta? 
-                <a href="registro.html" class="text-decoration-none fw-semibold">Regístrate</a>
+                <a href="../registro_usuario/registro.html" class="text-decoration-none fw-semibold">Regístrate</a>
                 </p>
             </form>
             </div>
@@ -177,9 +177,9 @@
     </div>
 
     
-    <script src="barra-nav.js"></script>
-    <script src="login.js"></script>
-    <script src="admin-productos.js"></script>
+    <script src="../barra-nav.js"></script>
+    <script src="../login/login.js"></script>
+    <script src="../gestion_producto/admin-productos.js"></script>
     <script src="productos.js"></script> 
     <script>
     document.addEventListener("DOMContentLoaded", function() {

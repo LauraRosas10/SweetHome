@@ -64,11 +64,11 @@
                             <td><strong>${cat.nombre}</strong></td>
                             <td>${cat.descripcion || 'N/A'}</td>
                             <td><span class="badge ${estadoClase}">${estadoTexto}</span></td>
-                            <td class="text-end">
-                                <button class="btn btn-sm btn-outline-primary me-2" onclick="editarCategoria(${cat.id_categoria})">
+                            <td class="text-end"  style="min-width: 250px;">
+                                <button class="btn btn-sm btn-outline-primary me-2"  onclick="editarCategoria(${cat.id_categoria})">
                                     <i class="bi bi-pencil"></i> Editar
                                 </button>
-                                <button class="btn btn-sm btn-outline-danger " 
+                                <button class="btn btn-sm btn-outline-danger   "  
                                     onclick="toggleCategoria(${cat.id_categoria}, '${cat.estado}')">
                                 ${String(cat.estado).toUpperCase() === 'ACTIVO' ? 'Desactivar' : 'Activar'}
                             </button>

@@ -11,9 +11,11 @@ function logoutUser() {
     // Actualizar la vista de la barra de navegación
     updateNavbarVisibility();
     
-    // Redirigir y alertar
-    alert("Sesión cerrada correctamente.");
-    window.location.href = 'productos.html';
+    // Solo redirige si NO estás en productos.html
+    if (!window.location.pathname.includes("/vista_producto/productos.html")) {
+        window.location.href = "/index.html";
+    }
+
 
 }
 
@@ -32,7 +34,8 @@ function updateNavbarVisibility() {
     const gestionLinkLi = document.getElementById('nav-gestion');
     const homeLinkLi = document.getElementById('nav-home');
     const productosLinkLi = document.getElementById('nav-productos');
-    const carritoLinkLi = document.getElementById('nav-carrito');
+    const registrarUsuario = document.getElementById('nav-registro');
+
 
     
     // Variables de control de rol
@@ -76,20 +79,20 @@ function updateNavbarVisibility() {
         if (usuariosLinkLi) usuariosLinkLi.style.display = isAdmin ? 'block' : 'none';
         if (gestionLinkLi) gestionLinkLi.style.display = (isAdmin || isVendedor) ? 'block' : 'none';
         if (homeLinkLi) homeLinkLi.style.display = 'block';
+        if (registrarUsuario) registrarUsuario.style.display = 'none';
         if (productosLinkLi) productosLinkLi.style.display = 'block';
-        if (carritoLinkLi) carritoLinkLi.style.display = 'block';
 
     } else {
         //  USUARIO NO LOGUEADO 
         if (loginLinkLi) loginLinkLi.style.display = 'block';
         if (homeLinkLi) homeLinkLi.style.display = 'block';
         if (productosLinkLi) productosLinkLi.style.display = 'block';
-        if (carritoLinkLi) carritoLinkLi.style.display = 'block';
-        if (registrarUsuario) registrarUsuario.style.display = 'block';
+       
 
         // Ocultar todo lo demás
         if (categoriasLinkLi) categoriasLinkLi.style.display = 'none';
         if (usuariosLinkLi) usuariosLinkLi.style.display = 'none';
         if (gestionLinkLi) gestionLinkLi.style.display = 'none';
+        if (registrarUsuario) registrarUsuario.style.display = 'block';
     }
 }

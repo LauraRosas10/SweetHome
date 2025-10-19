@@ -53,11 +53,11 @@ updateNavbarVisibility();
 
         const rol = data.rol.nombre; 
         if (rol === "Administrador" || rol === "Vendedor-Comprador") {
-                window.location.href = "admin-productos.html"; 
+                window.location.href = "../gestion_producto/admin-productos.html"; 
         } else if (rol === "Usuario") {
                 window.location.href = "usuario.html";
         } else {
-         window.location.href = "index.html"; // Redirección por defecto
+         window.location.href = "../index.html"; // Redirección por defecto
         }
     })
         .catch(error => {
