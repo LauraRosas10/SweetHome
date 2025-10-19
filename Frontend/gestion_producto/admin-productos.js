@@ -104,12 +104,12 @@
             let productosDB = await response.json();
             tbody.innerHTML = "";
 
-            // 🔹 FILTRAR según el rol
+            // FILTRAR según el rol
             if (role !== "Administrador") {
                 productosDB = productosDB.filter(p => p.id_usuario.id_usuario == userId);
             }
 
-            // 🔹 Mostrar productos filtrados
+            // Mostrar productos filtrados
             productosDB.forEach(producto => {
                 const estadoBadgeClass = producto.estado === 'DISPONIBLE' ? 'bg-success' : 'bg-danger';
                 const tr = document.createElement("tr");

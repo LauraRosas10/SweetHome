@@ -130,6 +130,23 @@ function filtrarPorCategoria(idCategoria) {
   renderizarProductos(filtrados);
 }
 
+// Buscar productos por nombre
+function buscarProductos() {
+  const termino = document.getElementById('busquedaProducto').value.trim().toLowerCase();
+
+  if (termino === "") {
+    renderizarProductos(productosGlobal);
+    return;
+  }
+
+  const filtrados = productosGlobal.filter(p =>
+    p.nombre.toLowerCase().includes(termino)
+  );
+
+  renderizarProductos(filtrados);
+}
+
+
 // Simular agregar al carrito
 function agregarAlCarrito(id) {
   alert(`Producto ${id} agregado al carrito 🛒`);
@@ -138,4 +155,8 @@ function agregarAlCarrito(id) {
 // Inicializar la carga al DOMContentLoaded
 document.addEventListener('DOMContentLoaded', async () => {
   await Promise.all([cargarCategorias(), cargarProductos()]);
+
+    // 🔍 Eventos de búsqueda
+  document.getElementById('btnBuscar').addEventListener('click', buscarProductos);
+  document.getElementById('busquedaProducto').addEventListener('input', buscarProductos);
 });
