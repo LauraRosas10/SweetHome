@@ -95,11 +95,11 @@ Frontend http://localhost:5500
 
 - Backend:
 
-Java 17 
-Spring Boot 3.5.5
-Spring Security + JWT
-Maven
-MySQL
+* Java 17 
+* Spring Boot 3.5.5
+* Spring Security + JWT
+* Maven
+* MySQL
 
 - Frontend
 
