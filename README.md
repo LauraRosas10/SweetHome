@@ -93,7 +93,7 @@ Frontend http://localhost:5500
 
 ### Tecnologías Utilizadas
 
-- Backend:
+#### Backend:
 
 * Java 17 
 * Spring Boot 3.5.5
@@ -101,10 +101,10 @@ Frontend http://localhost:5500
 * Maven
 * MySQL
 
-- Frontend
+#### Frontend
 
-JavaScript Vanilla (ES6)
-HTML5 + CSS3 + Bootstrap 5
+* JavaScript Vanilla (ES6)
+* HTML5 + CSS3 + Bootstrap 5
 
 
 
@@ -145,8 +145,8 @@ SweetHome/
 
 ### Equipo de Desarrollo
 Nombres:
-Laura Rosas
-Justin Galvis
+* Laura Rosas
+* Justin Galvis
 
 
 
