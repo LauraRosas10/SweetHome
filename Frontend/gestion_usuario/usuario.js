@@ -89,13 +89,6 @@ async function cargarUsuariosYRenderizar() {
                     title="Editar Usuario">
                     <i class="bi bi-pencil"></i> Editar
                 </button>
-  
-                <button 
-                    class="btn btn-sm btn-outline-danger" 
-                    onclick="eliminarUsuario(${usuario.id_usuario})"
-                    title="Eliminar Usuario">
-                    <i class="bi bi-trash"></i> Eliminar
-                </button>
             </td>
         `;
         tbody.appendChild(row);
