@@ -33,7 +33,7 @@ public class Producto {
 	@Lob
 	@Column(name = "Imagen", columnDefinition = "LONGTEXT")
 	private String Imagen;
-	
+	private String Estado;
 	
 	//foraneas
 	@ManyToOne
@@ -51,8 +51,9 @@ public class Producto {
 
 	}
 	
+
 	public Producto(int id_producto, String nombre, int stock, float precio, String descripcion, String imagen,
-			Categoria id_categoria, Usuario id_usuario) {
+			String estado, Categoria id_categoria, Usuario id_usuario) {
 		super();
 		Id_producto = id_producto;
 		Nombre = nombre;
@@ -60,10 +61,12 @@ public class Producto {
 		Precio = precio;
 		Descripcion = descripcion;
 		Imagen = imagen;
+		Estado = estado;
 		Id_categoria = id_categoria;
 		Id_usuario = id_usuario;
 	}
-	
+
+
 	//get y set
 
 	public int getId_producto() {
@@ -128,6 +131,16 @@ public class Producto {
 
 	public void setId_usuario(Usuario id_usuario) {
 		Id_usuario = id_usuario;
+	}
+
+
+	public String getEstado() {
+		return Estado;
+	}
+
+
+	public void setEstado(String estado) {
+		Estado = estado;
 	}
 
 

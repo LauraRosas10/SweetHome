@@ -31,7 +31,7 @@ CREATE TABLE Usuario (
 -- Creación de la tabla Categoria
 CREATE TABLE Categoria (
     Id_categoria INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre VARCHAR(20),
+    Nombre VARCHAR(200),
     Descripcion VARCHAR(300),
 	Estado VARCHAR(50)
 );
@@ -44,7 +44,8 @@ CREATE TABLE Producto(
     Stock INT,
     Precio FLOAT,
     Descripcion VARCHAR(300),
-    Imagen VARCHAR(300),
+    Imagen longtext,
+    Estado varchar(60),
     Id_categoria INT,
     Id_usuario INT,
     FOREIGN KEY (Id_categoria) REFERENCES Categoria(Id_categoria),
@@ -75,4 +76,6 @@ CREATE TABLE DetallePedido (
 );
 
 
-
+INSERT INTO `rol` VALUES (1,'Administrador','Activo'),(2,'Vendedor-Comprador','Activo');
+INSERT INTO `usuario` VALUES (1,'Laura','Rosas','lala@gmail.com','lala',1,'3142105956'),(2,'Angie','Rosas','angie@gmail.com','1234',1,'3242567892'),(8,'Lucia','Gomez','afkjh@gmail.com','12345678',2,'3138762774'),(10,'Marisol','Joya','marisol@gmail.com','alicia123',2,'3112411768'),(23,'Maria','Joya','lalalalal@gmail.com','123456789',2,'3118765342'),(24,'Claudia','Rosales','claudia@gmail.com','claudia',1,'3219067547');
+INSERT INTO `categoria` VALUES (1,'Baño','Accesorios, toallas, cortinas de ducha y decoración para el baño.','ACTIVO'),(2,'Limpieza y Organización','Productos de limpieza, cestas, cajas organizadoras y perchas.','ACTIVO'),(3,'Cocina y Comedor','Utensilios, electrodomésticos, vajilla, cristalería y mantelería, se proporcionan en esta categoria.','ACTIVO'),(4,'Decoración','Arte, iluminación, espejos, cortinas, cojines y objetos decorativos.','ACTIVO'),(5,'Dormitorio','Ropa de cama, almohadas, colchas y elementos decorativos específicos de la habitación.','ACTIVO'),(6,'Muebles','Sillas, mesas, estanterías, sofás y camas.','ACTIVO');

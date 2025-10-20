@@ -62,11 +62,21 @@ public class ProductoControlador {
 		if (prod!=null) {
 			
 			prod.setNombre(producto.getNombre());
-			prod.setStock(producto.getStock());
+			
 			prod.setPrecio(producto.getPrecio());
 			prod.setDescripcion(producto.getDescripcion());
 			prod.setId_categoria(producto.getId_categoria());
 			prod.setId_usuario(producto.getId_usuario());
+			prod.setEstado(producto.getEstado());
+			prod.setStock(producto.getStock());
+			prod.setImagen(producto.getImagen());
+			
+			if (producto.getStock() == 0) {
+			    prod.setEstado("VENDIDO");
+			} else {
+			    prod.setEstado("DISPONIBLE");
+			}
+
 			
 			productoService.nuevoProducto(prod);
 		}else {
