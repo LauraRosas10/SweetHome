@@ -141,7 +141,7 @@ SweetHome/
 
 ### Modelo entidad relacion
 
-![Modelo ER](informacion de la BD/modelo ER.png)
+![Modelo ER](Información de la BD/Diagrama ER.png)
 ### Equipo de Desarrollo
 Nombres:
 Laura Rosas
