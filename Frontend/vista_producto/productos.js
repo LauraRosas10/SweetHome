@@ -37,6 +37,7 @@ function crearTarjetaProducto(producto) {
         <button class="btn btn-outline-primary mt-auto" onclick="agregarAlCarrito(${producto.id_producto})">
           <i class="bi bi-cart-plus-fill me-1"></i> Comprar
         </button>
+
       </div>
     </div>
   `;

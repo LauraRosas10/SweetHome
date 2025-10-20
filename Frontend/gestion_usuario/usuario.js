@@ -90,6 +90,12 @@ async function cargarUsuariosYRenderizar() {
                     <i class="bi bi-pencil"></i> Editar
                 </button>
   
+                <button 
+                    class="btn btn-sm btn-outline-danger" 
+                    onclick="eliminarUsuario(${usuario.id_usuario})"
+                    title="Eliminar Usuario">
+                    <i class="bi bi-trash"></i> Eliminar
+                </button>
             </td>
         `;
         tbody.appendChild(row);
@@ -191,7 +197,7 @@ async function guardarUsuario() {
     
     console.log("Rol seleccionado:", password)
     const idRolMap = { 'Administrador': 1, 'Vendedor-Comprador': 2};
-    const rolObj = { id_rol: idRolMap[rol.toLowerCase()] || 2 };
+    const rolObj = { id_rol: idRolMap[rol] || 2 };
 
     const payload = {
         nombre: nombre,
