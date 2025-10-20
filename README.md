@@ -9,9 +9,9 @@ Permite a los usuarios **publicar productos**, **comunicarse con vendedores** y 
 
 ## Vista Previa del Proyecto  
 
-| Página Principal | Catálogo de Productos | Detalle del Producto |
+| Página Principal | Catálogo de Productos | Gestión de Productos |
 |------------------|-----------------------|----------------------|
-| ![Home]() | ![Productos](docs/screenshots/catalogo.png) | ![Detalle](docs/screenshots/detalle.png) |
+| ![Home](src_readme/home.png) | ![Productos](src_readme/productos.png) | ![Detalle](src_readme/gestion_productos.png) |
 
 | Carrito | Perfil de Usuario | Panel de Administración |
 |----------|------------------|--------------------------|
