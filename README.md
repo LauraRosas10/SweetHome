@@ -9,13 +9,18 @@ Permite a los usuarios **publicar productos**, **comunicarse con vendedores** y 
 
 ## Vista Previa del Proyecto  
 
-| Página Principal | Catálogo de Productos | Gestión de Productos |
+| Página Principal | Login | Registrarse como usuario |
 |------------------|-----------------------|----------------------|
-| ![Home](src_readme/home.png) | ![Productos](src_readme/productos.png) | ![Detalle](src_readme/gestion_productos.png) |
+| ![Home](src_readme/home.png) | ![Login](src_readme/inicio_sesion.png) | ![Registro](src_readme/registro.png) |
 
-| Carrito | Perfil de Usuario | Panel de Administración |
-|----------|------------------|--------------------------|
-| ![Carrito](docs/screenshots/carrito.png) | ![Perfil](docs/screenshots/perfil.png) | ![Admin](docs/screenshots/admin.png) |
+
+| Gestión de categorías | Catálogo de Productos | Gestión de Productos |
+|------------------|-----------------------|----------------------|
+| ![categorias](src_readme/gestion_categorias.png) | ![catalogo](src_readme/productos.png) | ![productos](src_readme/gestion_productos.png) |
+
+| Gestión de usuarios | 
+|----------|
+| ![usuarios](src_readme/gestion_usuarios.png) | 
 
 ---
 
