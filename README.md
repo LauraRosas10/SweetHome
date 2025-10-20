@@ -26,19 +26,19 @@ Permite a los usuarios **publicar productos**, **comunicarse con vendedores** y 
 
 ## Características Principales  
 
--Gestión de Productos
--Pedidos
--Búsqueda Avanzada — Filtra por nombre, categoría
--Comunicación Directa — Contacto rápido entre comprador y vendedor  
--Diseño Responsive 
--Seguridad JWT — Autenticación y control de acceso con Spring Security  
+- Gestión de Productos
+- Pedidos
+- Búsqueda Avanzada — Filtra por nombre, categoría
+- Comunicación Directa — Contacto rápido entre comprador y vendedor  
+- Diseño Responsive 
+- Seguridad JWT — Autenticación y control de acceso con Spring Security  
 ---
 
 ##  Tabla de Contenido
 1. [Instalación y Configuración](#instalación-y-configuración)     
 2. [Tecnologías Utilizadas](#tecnologías-utilizadas)  
 3. [Estructura del Proyecto](#️estructura-del-proyecto)
-4. [Arquitectura de la BD](#️modelo-entidad-relacion)
+4. [Arquitectura de la BD](#️modelo-entidad-relación)
 5. [Equipo de Desarrollo](#equipo-de-desarrollo)  
 
 
@@ -139,7 +139,7 @@ SweetHome/
 ```
 
 
-### Modelo entidad relacion
+### Modelo entidad relación
 
 ![Modelo ER](Información%20de%20la%20BD/Diagrama%20ER.png)
 
