@@ -26,16 +26,16 @@ Permite a los usuarios **publicar productos**, **comunicarse con vendedores** y 
 
 ## Características Principales  
 
-**Gestión de Productos**
-**Pedidos**  
-**Búsqueda Avanzada** — Filtra por nombre, categoría
-**Comunicación Directa** — Contacto rápido entre comprador y vendedor  
-**Diseño Responsive** — Adaptado a móviles, tablets y desktops  
-**Seguridad JWT** — Autenticación y control de acceso con Spring Security  
+-Gestión de Productos
+-Pedidos
+-Búsqueda Avanzada — Filtra por nombre, categoría
+-Comunicación Directa — Contacto rápido entre comprador y vendedor  
+-Diseño Responsive — Adaptado a móviles, tablets y desktops  
+-Seguridad JWT — Autenticación y control de acceso con Spring Security  
 ---
 
 ##  Tabla de Contenidos
-1. [Instalación y Configuración](#-instalación-y-configuración)  
+1. [Instalación y Configuración](#instalación-y-configuración)  
 2. [Ejecución del Proyecto](#-ejecución-del-proyecto)  
 3. [Solución de Problemas](#-solución-de-problemas)  
 4. [Tecnologías Utilizadas](#-tecnologías-utilizadas)  
@@ -67,7 +67,7 @@ Asegúrate de tener instalado:
 ```bash
 git clone https://github.com/TU_USUARIO/SweetHome.git
 cd SweetHome
-
+```
 
 
 2️⃣ Configurar Backend (Spring Boot + MySQL)
@@ -82,20 +82,20 @@ Editar el archivo src/backend-springboot/src/main/resources/application.properti
 spring.datasource.url=jdbc:mysql://localhost:3306/sweet_home
 spring.datasource.username=<usuario>
 spring.datasource.password=<contraseña>
-
+```
 
 Ejecutar el backend:
 ```bash
 cd src/backend-springboot
 mvn clean install
 mvn spring-boot:run
-
+```
 3️⃣ Configurar Frontend (JavaScript)
 ```bash
 cd src/frontend-js
 npm install
 npm start
-
+```
 🚀 Ejecución del Proyecto
 Servicio	Puerto	URL
 🖥️ Backend (API)	8080	http://localhost:8080/api/
@@ -151,7 +151,7 @@ SweetHome/
 ├── docs/
 │   └── screenshots/
 └── README.md
-
+```
 🧬 Arquitectura de Datos
 🧾 Modelos Principales
 👤 Usuario
@@ -206,22 +206,22 @@ Haz un fork del repositorio
 Clona tu fork
 ```bash
 git clone https://github.com/TU_USUARIO/SweetHome.git
-
+```
 
 Crea una nueva rama
 ```bash
 git checkout -b feature/nueva-funcionalidad
-
+```
 
 Realiza tus cambios y haz commit
 ```bash
 git commit -m "feat: agregar nueva funcionalidad"
-
+```
 
 Sube tu rama
 ```bash
 git push origin feature/nueva-funcionalidad
-
+```
 
 Crea un Pull Request explicando tus cambios
 
