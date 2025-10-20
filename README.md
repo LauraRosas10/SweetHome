@@ -39,7 +39,7 @@ Permite a los usuarios **publicar productos**, **comunicarse con vendedores** y 
 2. [Tecnologías Utilizadas](#tecnologías-utilizadas)  
 3. [Estructura del Proyecto](#️estructura-del-proyecto)
 4. [Arquitectura de la BD](#️modelo-entidad-relacion)
-5. [Equipo de Desarrollo](#-equipo-de-desarrollo)  
+5. [Equipo de Desarrollo](#equipo-de-desarrollo)  
 
 
 ---
@@ -141,7 +141,8 @@ SweetHome/
 
 ### Modelo entidad relacion
 
-![Modelo ER](Información de la BD/Diagrama ER.png)
+![Modelo ER](Información%20de%20la%20BD/Diagrama%20ER.png)
+
 ### Equipo de Desarrollo
 Nombres:
 Laura Rosas
