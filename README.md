@@ -35,14 +35,11 @@ Permite a los usuarios **publicar productos**, **comunicarse con vendedores** y 
 ---
 
 ##  Tabla de Contenido
-1. [Instalación y Configuración](#instalación-y-configuración)  
-2. [Ejecución del Proyecto](#-ejecución-del-proyecto)   
-3. [Tecnologías Utilizadas](#-tecnologías-utilizadas)  
-4. [Estructura del Proyecto](#️-estructura-del-proyecto)  
-5. [Arquitectura de Datos](#-arquitectura-de-datos)  
-6. [API Endpoints](#-api-endpoints)  
-7. [Contribución](#-contribución)  
-8. [Equipo de Desarrollo](#-equipo-de-desarrollo)  
+1. [Instalación y Configuración](#instalación-y-configuración)     
+2. [Tecnologías Utilizadas](#tecnologías-utilizadas)  
+3. [Estructura del Proyecto](#️estructura-del-proyecto)
+4. [Arquitectura de la BD](#️modelo-entidad-relacion)
+5. [Equipo de Desarrollo](#-equipo-de-desarrollo)  
 
 
 ---
@@ -142,7 +139,10 @@ SweetHome/
 ```
 
 
-###Equipo de Desarrollo
+### Modelo entidad relacion
+
+![Modelo ER](informacion de la BD/modelo ER.png)
+### Equipo de Desarrollo
 Nombres:
 Laura Rosas
 Justin Galvis
