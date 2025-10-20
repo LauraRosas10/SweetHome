@@ -3,16 +3,16 @@ package uis.edu.entorno.backend.config;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken; // ⬅️ Importante
-import org.springframework.security.core.context.SecurityContextHolder; // ⬅️ Importante
-import org.springframework.security.core.userdetails.User; // ⬅️ Usamos una clase básica de UserDetails
-import org.springframework.security.core.authority.SimpleGrantedAuthority; // ⬅️ Para asignar roles
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken; 
+import org.springframework.security.core.context.SecurityContextHolder; 
+import org.springframework.security.core.userdetails.User; 
+import org.springframework.security.core.authority.SimpleGrantedAuthority; 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.JwtException;
 
 import java.io.IOException;
-import java.util.Collections; // ⬅️ Para la lista de roles
+import java.util.Collections; 
 
 @Component
 public class JwtProtegidas extends OncePerRequestFilter {
