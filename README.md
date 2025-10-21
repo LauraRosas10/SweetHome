@@ -86,9 +86,9 @@ Ejecutar frontend.
 
 ### Ejecución del Proyecto
 Puertos:
-Backend	http://localhost:8080
+- Backend	8080
 
-Frontend http://localhost:5500
+- Frontend 5500
 
 
 ### Tecnologías Utilizadas
